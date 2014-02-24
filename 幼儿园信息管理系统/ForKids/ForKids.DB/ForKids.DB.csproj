@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{815B9140-F0B4-4150-9FC9-96847C1A651C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ForKids.DB</RootNamespace>
+    <AssemblyName>ForKids.DB</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\CHARGEBASE.cs" />
+    <Compile Include="BLL\CLASSBASE.cs" />
+    <Compile Include="BLL\CLASSCOURSE.cs" />
+    <Compile Include="BLL\COURSEBASE.cs" />
+    <Compile Include="BLL\DEVICEBASE.cs" />
+    <Compile Include="BLL\GRADEBASE.cs" />
+    <Compile Include="BLL\GURDIANATTENDANCE.cs" />
+    <Compile Include="BLL\GURDIANBASE.cs" />
+    <Compile Include="BLL\KIDATTENDANCE.cs" />
+    <Compile Include="BLL\KIDBASE.cs" />
+    <Compile Include="BLL\KIDCMDRECORD.cs" />
+    <Compile Include="BLL\KIDCOURSE.cs" />
+    <Compile Include="BLL\KIDPAYMENT.cs" />
+    <Compile Include="BLL\MEETINGBASE.cs" />
+    <Compile Include="BLL\ROLEBASE.cs" />
+    <Compile Include="BLL\TEACHERBASE.cs" />
+    <Compile Include="BLL\USERBASE.cs" />
+    <Compile Include="IDAL\ICHARGEBASE.cs" />
+    <Compile Include="IDAL\ICLASSBASE.cs" />
+    <Compile Include="IDAL\ICLASSCOURSE.cs" />
+    <Compile Include="IDAL\ICOURSEBASE.cs" />
+    <Compile Include="IDAL\IDEVICEBASE.cs" />
+    <Compile Include="IDAL\IGRADEBASE.cs" />
+    <Compile Include="IDAL\IGURDIANATTENDANCE.cs" />
+    <Compile Include="IDAL\IGURDIANBASE.cs" />
+    <Compile Include="IDAL\IKIDATTENDANCE.cs" />
+    <Compile Include="IDAL\IKIDBASE.cs" />
+    <Compile Include="IDAL\IKIDCMDRECORD.cs" />
+    <Compile Include="IDAL\IKIDCOURSE.cs" />
+    <Compile Include="IDAL\IKIDPAYMENT.cs" />
+    <Compile Include="IDAL\IMEETINGBASE.cs" />
+    <Compile Include="IDAL\IROLEBASE.cs" />
+    <Compile Include="IDAL\ITEACHERBASE.cs" />
+    <Compile Include="IDAL\IUSERBASE.cs" />
+    <Compile Include="Model\CHARGEBASE.cs" />
+    <Compile Include="Model\CLASSBASE.cs" />
+    <Compile Include="Model\CLASSCOURSE.cs" />
+    <Compile Include="Model\COURSEBASE.cs" />
+    <Compile Include="Model\DEVICEBASE.cs" />
+    <Compile Include="Model\GRADEBASE.cs" />
+    <Compile Include="Model\GURDIANATTENDANCE.cs" />
+    <Compile Include="Model\GURDIANBASE.cs" />
+    <Compile Include="Model\KIDATTENDANCE.cs" />
+    <Compile Include="Model\KIDBASE.cs" />
+    <Compile Include="Model\KIDCMDRECORD.cs" />
+    <Compile Include="Model\KIDCOURSE.cs" />
+    <Compile Include="Model\KIDPAYMENT.cs" />
+    <Compile Include="Model\MEETINGBASE.cs" />
+    <Compile Include="Model\ROLEBASE.cs" />
+    <Compile Include="Model\TEACHERBASE.cs" />
+    <Compile Include="Model\USERBASE.cs" />
+    <Compile Include="OleDbDAL\CHARGEBASE.cs" />
+    <Compile Include="OleDbDAL\CLASSBASE.cs" />
+    <Compile Include="OleDbDAL\CLASSCOURSE.cs" />
+    <Compile Include="OleDbDAL\COURSEBASE.cs" />
+    <Compile Include="OleDbDAL\DEVICEBASE.cs" />
+    <Compile Include="OleDbDAL\GRADEBASE.cs" />
+    <Compile Include="OleDbDAL\GURDIANATTENDANCE.cs" />
+    <Compile Include="OleDbDAL\GURDIANBASE.cs" />
+    <Compile Include="OleDbDAL\KIDATTENDANCE.cs" />
+    <Compile Include="OleDbDAL\KIDBASE.cs" />
+    <Compile Include="OleDbDAL\KIDCMDRECORD.cs" />
+    <Compile Include="OleDbDAL\KIDCOURSE.cs" />
+    <Compile Include="OleDbDAL\KIDPAYMENT.cs" />
+    <Compile Include="OleDbDAL\MEETINGBASE.cs" />
+    <Compile Include="OleDbDAL\ROLEBASE.cs" />
+    <Compile Include="OleDbDAL\TEACHERBASE.cs" />
+    <Compile Include="OleDbDAL\USERBASE.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\OleDbHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ForKids.Util\ForKids.Util.csproj">
+      <Project>{09A20948-A76D-4FD2-85AC-AEFC9AB4125E}</Project>
+      <Name>ForKids.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

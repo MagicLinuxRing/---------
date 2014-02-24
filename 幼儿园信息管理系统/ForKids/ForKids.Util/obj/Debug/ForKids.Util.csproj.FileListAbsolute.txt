@@ -1,0 +1,8 @@
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Util\bin\Debug\ForKids.Util.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Util\bin\Debug\ForKids.Util.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Util\obj\Debug\ForKids.Util.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Util\obj\Debug\ForKids.Util.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Util\bin\Debug\ForKids\DB\ForKids.accdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Util\bin\Debug\ForKids\Config\app.config
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Util\bin\Debug\ForKids.Util.dll.config
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Util\obj\Debug\ForKids.Util.csproj.ResolveComReference.cache

@@ -1,0 +1,13 @@
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\bin\Debug\ForKids.UI.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\bin\Debug\ForKids.UI.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\bin\Debug\ForKids.DB.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\bin\Debug\ForKids.Util.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\bin\Debug\ForKids.DB.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\bin\Debug\ForKids.Util.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\obj\Debug\ForKids.UI.csprojResolveAssemblyReference.cache
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\obj\Debug\ForKids.UI.KidBaseCtrl.resources
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\obj\Debug\ForKids.UI.csproj.GenerateResource.Cache
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\obj\Debug\ForKids.UI.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\obj\Debug\ForKids.UI.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\bin\Debug\ForKids\DB\ForKids.accdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.UI\bin\Debug\ForKids\Config\app.config

@@ -1,0 +1,9 @@
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.DB\obj\Debug\ForKids.DB.csprojResolveAssemblyReference.cache
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.DB\bin\Debug\ForKids.DB.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.DB\bin\Debug\ForKids.DB.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.DB\bin\Debug\ForKids.Util.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.DB\bin\Debug\ForKids.Util.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.DB\obj\Debug\ForKids.DB.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.DB\obj\Debug\ForKids.DB.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.DB\bin\Debug\ForKids\DB\ForKids.accdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.DB\bin\Debug\ForKids\Config\app.config

@@ -22,6 +22,8 @@
 #include "ForKidsDoc.h"
 #include "ForKidsView.h"
 
+using namespace ForKids::UI;
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -150,13 +152,18 @@ void CForKidsView::OnSize(UINT nType, int cx, int cy)
 			m_gcMainPanel = gcnew Panel;
 			::SetParent((HWND)m_gcMainPanel->Handle.ToInt32(),this->m_hWnd);
 			//DataGridView^ gcDGV = gcnew DataGridView;
-			Label^ gcLabel = gcnew Label;
-			gcLabel->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
-			gcLabel->Text=L"一个测试：这是一个C# Label控件，嵌入在基于C++语言的Ribbon风格MFC框架视图中;如果你看到这个能实现，那么所有在C#中能完成的功能，在这里也能完成！";
-			gcLabel->AutoSize=FALSE;
-			gcLabel->Font=gcnew System::Drawing::Font(gcLabel->Font->FontFamily,20,System::Drawing::FontStyle::Bold);
-			gcLabel->Dock=DockStyle::Fill;
-			m_gcMainPanel->Controls->Add(gcLabel);
+			//Label^ gcLabel = gcnew Label;
+			//gcLabel->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			//gcLabel->Text=L"一个测试：这是一个C# Label控件，嵌入在基于C++语言的Ribbon风格MFC框架视图中;如果你看到这个能实现，那么所有在C#中能完成的功能，在这里也能完成！";
+			//gcLabel->AutoSize=FALSE;
+			//gcLabel->Font=gcnew System::Drawing::Font(gcLabel->Font->FontFamily,20,System::Drawing::FontStyle::Bold);
+			//gcLabel->Dock=DockStyle::Fill;
+			//m_gcMainPanel->Controls->Add(gcLabel);
+
+			KidBaseCtrl^ gcCtrl = gcnew KidBaseCtrl;
+			gcCtrl->Dock=DockStyle::Fill;
+			m_gcMainPanel->Controls->Add(gcCtrl);
+
 			m_bLoadMainPanel=true;
 		}
 		RECT rect;
