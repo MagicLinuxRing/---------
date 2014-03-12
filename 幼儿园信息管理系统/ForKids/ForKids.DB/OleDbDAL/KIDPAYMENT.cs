@@ -51,8 +51,8 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append(" values (");
 			strSql.Append("@KIDID,@CHARGEID,@PAYMENT,@PAYDATE)");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@KIDID", OleDbType.SmallInt),
-					new OleDbParameter("@CHARGEID", OleDbType.SmallInt),
+					new OleDbParameter("@KIDID", OleDbType.Integer,4),
+					new OleDbParameter("@CHARGEID", OleDbType.Integer,4),
 					new OleDbParameter("@PAYMENT", OleDbType.Double),
 					new OleDbParameter("@PAYDATE", OleDbType.Date)};
 			parameters[0].Value = model.KIDID;
@@ -83,8 +83,8 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append("PAYDATE=@PAYDATE");
 			strSql.Append(" where ID=@ID");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@KIDID", OleDbType.SmallInt),
-					new OleDbParameter("@CHARGEID", OleDbType.SmallInt),
+					new OleDbParameter("@KIDID", OleDbType.Integer,4),
+					new OleDbParameter("@CHARGEID", OleDbType.Integer,4),
 					new OleDbParameter("@PAYMENT", OleDbType.Double),
 					new OleDbParameter("@PAYDATE", OleDbType.Date),
 					new OleDbParameter("@ID", OleDbType.Integer,4)};
@@ -173,15 +173,15 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["KIDID"]!=null && ds.Tables[0].Rows[0]["KIDID"].ToString()!="")
 				{
-					//model.KIDID=ds.Tables[0].Rows[0]["KIDID"].ToString();
+					model.KIDID=int.Parse(ds.Tables[0].Rows[0]["KIDID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["CHARGEID"]!=null && ds.Tables[0].Rows[0]["CHARGEID"].ToString()!="")
 				{
-					//model.CHARGEID=ds.Tables[0].Rows[0]["CHARGEID"].ToString();
+					model.CHARGEID=int.Parse(ds.Tables[0].Rows[0]["CHARGEID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["PAYMENT"]!=null && ds.Tables[0].Rows[0]["PAYMENT"].ToString()!="")
 				{
-					//model.PAYMENT=ds.Tables[0].Rows[0]["PAYMENT"].ToString();
+                    model.PAYMENT=double.Parse(ds.Tables[0].Rows[0]["PAYMENT"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["PAYDATE"]!=null && ds.Tables[0].Rows[0]["PAYDATE"].ToString()!="")
 				{

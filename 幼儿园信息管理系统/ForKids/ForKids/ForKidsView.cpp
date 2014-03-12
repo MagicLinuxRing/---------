@@ -21,6 +21,7 @@
 
 #include "ForKidsDoc.h"
 #include "ForKidsView.h"
+#include "MainFrm.h"
 
 using namespace ForKids::UI;
 
@@ -149,7 +150,7 @@ void CForKidsView::OnSize(UINT nType, int cx, int cy)
 	{
 		if(!m_bLoadMainPanel)
 		{
-			m_gcMainPanel = gcnew Panel;
+			m_gcMainPanel = gcnew MainPanel;
 			::SetParent((HWND)m_gcMainPanel->Handle.ToInt32(),this->m_hWnd);
 			//DataGridView^ gcDGV = gcnew DataGridView;
 			//Label^ gcLabel = gcnew Label;
@@ -160,14 +161,60 @@ void CForKidsView::OnSize(UINT nType, int cx, int cy)
 			//gcLabel->Dock=DockStyle::Fill;
 			//m_gcMainPanel->Controls->Add(gcLabel);
 
-			KidBaseCtrl^ gcCtrl = gcnew KidBaseCtrl;
-			gcCtrl->Dock=DockStyle::Fill;
-			m_gcMainPanel->Controls->Add(gcCtrl);
+			//KidBaseCtrl^ gcCtrl = gcnew KidBaseCtrl;
+			//DockControl(gcCtrl);
+
+			//Label^ gcLabel = gcnew Label;
+			//gcLabel->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			//gcLabel->Text=L"欢迎使用幼儿信息管理系统 v1.0！";
+			//gcLabel->AutoSize=FALSE;
+			//gcLabel->Font=gcnew System::Drawing::Font(gcLabel->Font->FontFamily,20,System::Drawing::FontStyle::Bold);
+			//DockControl(gcLabel);
 
 			m_bLoadMainPanel=true;
 		}
-		RECT rect;
+		// 使主面板动态填充在视图中
+		CRect rect;
 		this->GetClientRect(&rect);
-		::MoveWindow((HWND)m_gcMainPanel->Handle.ToInt32(),0,0,rect.right,rect.bottom,TRUE);
+		::MoveWindow((HWND)m_gcMainPanel->Handle.ToInt32(),0,0,rect.right,rect.bottom,FALSE);
+
+		this->RedrawWindow();   // 完美解决当存在打开子窗口的时候，改变主框架窗口，会存在 有部分不重绘的现象 @2014/03/02 21:23
 	}
+}
+
+///* 
+// *  停靠控件到视图中
+// *  @gcNewCtrl 托管类型的控件对象
+// */
+//void CForKidsView::DockControl(Control^ gcNewCtrl)
+//{
+//	// 移除掉前一控件
+//	if(m_gcMainPanel->Controls->Count>0)
+//	{
+//		Control^ gcOldCtrl = m_gcMainPanel->Controls[0];
+//		m_gcMainPanel->Controls->Remove(gcOldCtrl);
+//		gcOldCtrl->Visible = false;
+//	}
+//
+//	// 增加控件，填充
+//	gcNewCtrl->Visible = true;
+//	gcNewCtrl->Dock=DockStyle::Fill;
+//	m_gcMainPanel->Controls->Add(gcNewCtrl);
+//}
+
+/* 
+ *  停靠控件到视图中
+ *  @gcNewCtrl 托管类型的控件对象
+ */
+void CForKidsView::DockControl(const char* strFormName)
+{
+	m_gcMainPanel->DockControl(gcnew System::String(strFormName));
+}
+
+void CForKidsView::OnInitialUpdate() 
+{
+	CView::OnInitialUpdate();
+	CFrameWnd* pFrameWnd=GetParentFrame();
+	CMainFrame* pMainFrame = DYNAMIC_DOWNCAST(CMainFrame,pFrameWnd);
+	pMainFrame->SetMainView(this);
 }

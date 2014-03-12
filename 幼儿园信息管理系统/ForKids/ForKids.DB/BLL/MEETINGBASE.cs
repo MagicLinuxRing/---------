@@ -120,7 +120,7 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["ATTENDANCE"]!=null && dt.Rows[n]["ATTENDANCE"].ToString()!="")
 					{
-					//model.ATTENDANCE=dt.Rows[n]["ATTENDANCE"].ToString();
+					model.ATTENDANCE=double.Parse(dt.Rows[n]["ATTENDANCE"].ToString());
 					}
 					if(dt.Rows[n]["SUMMARY"]!=null && dt.Rows[n]["SUMMARY"].ToString()!="")
 					{

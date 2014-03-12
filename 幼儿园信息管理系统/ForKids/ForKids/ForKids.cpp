@@ -178,6 +178,7 @@ protected:
 // 实现
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
@@ -219,6 +220,3 @@ void CForKidsApp::SaveCustomState()
 }
 
 // CForKidsApp 消息处理程序
-
-
-

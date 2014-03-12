@@ -53,7 +53,7 @@ namespace ForKids.DB.OleDbDAL
 			OleDbParameter[] parameters = {
 					new OleDbParameter("@USERNAME", OleDbType.VarChar,50),
 					new OleDbParameter("@PWD", OleDbType.VarChar,255),
-					new OleDbParameter("@ROLEID", OleDbType.SmallInt)};
+					new OleDbParameter("@ROLEID", OleDbType.Integer,4)};
 			parameters[0].Value = model.USERNAME;
 			parameters[1].Value = model.PWD;
 			parameters[2].Value = model.ROLEID;
@@ -82,7 +82,7 @@ namespace ForKids.DB.OleDbDAL
 			OleDbParameter[] parameters = {
 					new OleDbParameter("@USERNAME", OleDbType.VarChar,50),
 					new OleDbParameter("@PWD", OleDbType.VarChar,255),
-					new OleDbParameter("@ROLEID", OleDbType.SmallInt),
+					new OleDbParameter("@ROLEID", OleDbType.Integer,4),
 					new OleDbParameter("@ID", OleDbType.Integer,4)};
 			parameters[0].Value = model.USERNAME;
 			parameters[1].Value = model.PWD;
@@ -176,7 +176,7 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["ROLEID"]!=null && ds.Tables[0].Rows[0]["ROLEID"].ToString()!="")
 				{
-					//model.ROLEID=ds.Tables[0].Rows[0]["ROLEID"].ToString();
+					model.ROLEID=int.Parse(ds.Tables[0].Rows[0]["ROLEID"].ToString());
 				}
 				return model;
 			}

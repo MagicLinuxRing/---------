@@ -13,7 +13,7 @@ namespace ForKids.DB.Model
 		private int _id;
 		private string _username;
 		private string _pwd;
-		private short _roleid;
+		private int? _roleid;
 		/// <summary>
 		/// 标识
 		/// </summary>
@@ -41,7 +41,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 角色ID
 		/// </summary>
-		public short ROLEID
+		public int? ROLEID
 		{
 			set{ _roleid=value;}
 			get{return _roleid;}

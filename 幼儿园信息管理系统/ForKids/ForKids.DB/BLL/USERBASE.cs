@@ -73,7 +73,6 @@ namespace ForKids.DB.BLL
 			
 			return dal.GetModel(ID);
 		}
-
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
@@ -116,7 +115,7 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["ROLEID"]!=null && dt.Rows[n]["ROLEID"].ToString()!="")
 					{
-					//model.ROLEID=dt.Rows[n]["ROLEID"].ToString();
+						model.ROLEID=int.Parse(dt.Rows[n]["ROLEID"].ToString());
 					}
 					modelList.Add(model);
 				}

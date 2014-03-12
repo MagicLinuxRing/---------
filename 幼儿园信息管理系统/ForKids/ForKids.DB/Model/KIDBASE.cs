@@ -14,13 +14,13 @@ namespace ForKids.DB.Model
 		private string _studentid;
 		private int? _gurdianid;
 		private string _name;
-		private short _age;
+		private int? _age;
 		private double? _height;
 		private double? _weight;
 		private bool _sex= false;
 		private DateTime? _indate;
 		private double? _insurance;
-		private short _classid;
+		private int? _classid;
 		private byte[] _photo;
 		private string _medicalrecord;
 		private string _transferrecord;
@@ -61,7 +61,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 年龄
 		/// </summary>
-		public short AGE
+		public int? AGE
 		{
 			set{ _age=value;}
 			get{return _age;}
@@ -109,7 +109,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 班级
 		/// </summary>
-		public short CLASSID
+		public int? CLASSID
 		{
 			set{ _classid=value;}
 			get{return _classid;}

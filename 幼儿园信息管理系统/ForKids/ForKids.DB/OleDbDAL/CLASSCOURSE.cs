@@ -51,10 +51,10 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append(" values (");
 			strSql.Append("@CLASSID,@COURSEID,@ATTENDANCE,@TEACHERID,@SUMMARY)");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@CLASSID", OleDbType.SmallInt),
-					new OleDbParameter("@COURSEID", OleDbType.SmallInt),
+					new OleDbParameter("@CLASSID", OleDbType.Integer,4),
+					new OleDbParameter("@COURSEID", OleDbType.Integer,4),
 					new OleDbParameter("@ATTENDANCE", OleDbType.Double),
-					new OleDbParameter("@TEACHERID", OleDbType.SmallInt),
+					new OleDbParameter("@TEACHERID", OleDbType.Integer,4),
 					new OleDbParameter("@SUMMARY", OleDbType.VarChar,255)};
 			parameters[0].Value = model.CLASSID;
 			parameters[1].Value = model.COURSEID;
@@ -86,10 +86,10 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append("SUMMARY=@SUMMARY");
 			strSql.Append(" where ID=@ID");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@CLASSID", OleDbType.SmallInt),
-					new OleDbParameter("@COURSEID", OleDbType.SmallInt),
+					new OleDbParameter("@CLASSID", OleDbType.Integer,4),
+					new OleDbParameter("@COURSEID", OleDbType.Integer,4),
 					new OleDbParameter("@ATTENDANCE", OleDbType.Double),
-					new OleDbParameter("@TEACHERID", OleDbType.SmallInt),
+					new OleDbParameter("@TEACHERID", OleDbType.Integer,4),
 					new OleDbParameter("@SUMMARY", OleDbType.VarChar,255),
 					new OleDbParameter("@ID", OleDbType.Integer,4)};
 			parameters[0].Value = model.CLASSID;
@@ -178,19 +178,19 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["CLASSID"]!=null && ds.Tables[0].Rows[0]["CLASSID"].ToString()!="")
 				{
-					//model.CLASSID=ds.Tables[0].Rows[0]["CLASSID"].ToString();
+					model.CLASSID=int.Parse(ds.Tables[0].Rows[0]["CLASSID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["COURSEID"]!=null && ds.Tables[0].Rows[0]["COURSEID"].ToString()!="")
 				{
-					//model.COURSEID=ds.Tables[0].Rows[0]["COURSEID"].ToString();
+					model.COURSEID=int.Parse(ds.Tables[0].Rows[0]["COURSEID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["ATTENDANCE"]!=null && ds.Tables[0].Rows[0]["ATTENDANCE"].ToString()!="")
 				{
-					//model.ATTENDANCE=ds.Tables[0].Rows[0]["ATTENDANCE"].ToString();
+                    model.ATTENDANCE=double.Parse(ds.Tables[0].Rows[0]["ATTENDANCE"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["TEACHERID"]!=null && ds.Tables[0].Rows[0]["TEACHERID"].ToString()!="")
 				{
-					//model.TEACHERID=ds.Tables[0].Rows[0]["TEACHERID"].ToString();
+					model.TEACHERID=int.Parse(ds.Tables[0].Rows[0]["TEACHERID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["SUMMARY"]!=null && ds.Tables[0].Rows[0]["SUMMARY"].ToString()!="")
 				{

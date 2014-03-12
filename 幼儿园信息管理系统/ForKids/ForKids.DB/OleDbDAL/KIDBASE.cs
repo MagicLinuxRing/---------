@@ -54,13 +54,13 @@ namespace ForKids.DB.OleDbDAL
 					new OleDbParameter("@STUDENTID", OleDbType.VarChar,255),
 					new OleDbParameter("@GURDIANID", OleDbType.Integer,4),
 					new OleDbParameter("@NAME", OleDbType.VarChar,30),
-					new OleDbParameter("@AGE", OleDbType.SmallInt),
+					new OleDbParameter("@AGE", OleDbType.Integer,4),
 					new OleDbParameter("@HEIGHT", OleDbType.Double),
 					new OleDbParameter("@WEIGHT", OleDbType.Double),
 					new OleDbParameter("@SEX", OleDbType.Boolean,1),
 					new OleDbParameter("@INDATE", OleDbType.Date),
 					new OleDbParameter("@INSURANCE", OleDbType.Double),
-					new OleDbParameter("@CLASSID", OleDbType.SmallInt),
+					new OleDbParameter("@CLASSID", OleDbType.Integer,4),
 					new OleDbParameter("@PHOTO", OleDbType.Binary,0),
 					new OleDbParameter("@MEDICALRECORD", OleDbType.VarChar,255),
 					new OleDbParameter("@TRANSFERRECORD", OleDbType.VarChar,255),
@@ -119,13 +119,13 @@ namespace ForKids.DB.OleDbDAL
 					new OleDbParameter("@STUDENTID", OleDbType.VarChar,255),
 					new OleDbParameter("@GURDIANID", OleDbType.Integer,4),
 					new OleDbParameter("@NAME", OleDbType.VarChar,30),
-					new OleDbParameter("@AGE", OleDbType.SmallInt),
+					new OleDbParameter("@AGE", OleDbType.Integer,4),
 					new OleDbParameter("@HEIGHT", OleDbType.Double),
 					new OleDbParameter("@WEIGHT", OleDbType.Double),
 					new OleDbParameter("@SEX", OleDbType.Boolean,1),
 					new OleDbParameter("@INDATE", OleDbType.Date),
 					new OleDbParameter("@INSURANCE", OleDbType.Double),
-					new OleDbParameter("@CLASSID", OleDbType.SmallInt),
+					new OleDbParameter("@CLASSID", OleDbType.Integer,4),
 					new OleDbParameter("@PHOTO", OleDbType.Binary,0),
 					new OleDbParameter("@MEDICALRECORD", OleDbType.VarChar,255),
 					new OleDbParameter("@TRANSFERRECORD", OleDbType.VarChar,255),
@@ -240,15 +240,15 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["AGE"]!=null && ds.Tables[0].Rows[0]["AGE"].ToString()!="")
 				{
-					//model.AGE=ds.Tables[0].Rows[0]["AGE"].ToString();
+					model.AGE=int.Parse(ds.Tables[0].Rows[0]["AGE"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["HEIGHT"]!=null && ds.Tables[0].Rows[0]["HEIGHT"].ToString()!="")
 				{
-					//model.HEIGHT=ds.Tables[0].Rows[0]["HEIGHT"].ToString();
+                    model.HEIGHT=double.Parse(ds.Tables[0].Rows[0]["HEIGHT"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["WEIGHT"]!=null && ds.Tables[0].Rows[0]["WEIGHT"].ToString()!="")
 				{
-					//model.WEIGHT=ds.Tables[0].Rows[0]["WEIGHT"].ToString();
+                    model.WEIGHT=double.Parse(ds.Tables[0].Rows[0]["WEIGHT"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["SEX"]!=null && ds.Tables[0].Rows[0]["SEX"].ToString()!="")
 				{
@@ -267,11 +267,11 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["INSURANCE"]!=null && ds.Tables[0].Rows[0]["INSURANCE"].ToString()!="")
 				{
-					//model.INSURANCE=ds.Tables[0].Rows[0]["INSURANCE"].ToString();
+                    model.INSURANCE=double.Parse(ds.Tables[0].Rows[0]["INSURANCE"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["CLASSID"]!=null && ds.Tables[0].Rows[0]["CLASSID"].ToString()!="")
 				{
-					//model.CLASSID=ds.Tables[0].Rows[0]["CLASSID"].ToString();
+					model.CLASSID=int.Parse(ds.Tables[0].Rows[0]["CLASSID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["PHOTO"]!=null && ds.Tables[0].Rows[0]["PHOTO"].ToString()!="")
 				{

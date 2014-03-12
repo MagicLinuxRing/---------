@@ -73,7 +73,6 @@ namespace ForKids.DB.BLL
 			
 			return dal.GetModel(ID);
 		}
-
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
@@ -112,7 +111,7 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["FUNDING"]!=null && dt.Rows[n]["FUNDING"].ToString()!="")
 					{
-					//model.FUNDING=dt.Rows[n]["FUNDING"].ToString();
+                        model.FUNDING=double.Parse(dt.Rows[n]["FUNDING"].ToString());
 					}
 					if(dt.Rows[n]["LOSSINFO"]!=null && dt.Rows[n]["LOSSINFO"].ToString()!="")
 					{
@@ -124,7 +123,7 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["INVESTMENT"]!=null && dt.Rows[n]["INVESTMENT"].ToString()!="")
 					{
-					//model.INVESTMENT=dt.Rows[n]["INVESTMENT"].ToString();
+                        model.INVESTMENT=double.Parse(dt.Rows[n]["INVESTMENT"].ToString());
 					}
 					if(dt.Rows[n]["PURCHASEDATE"]!=null && dt.Rows[n]["PURCHASEDATE"].ToString()!="")
 					{

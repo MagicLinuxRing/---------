@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Collections.Generic;
-
 using ForKids.DB.Model;
-
 using ForKids.DB.IDAL;
 namespace ForKids.DB.BLL
 {
@@ -73,7 +71,6 @@ namespace ForKids.DB.BLL
 			
 			return dal.GetModel(ID);
 		}
-
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
@@ -108,11 +105,11 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["HEADTEACHERID"]!=null && dt.Rows[n]["HEADTEACHERID"].ToString()!="")
 					{
-					//model.HEADTEACHERID=dt.Rows[n]["HEADTEACHERID"].ToString();
+						model.HEADTEACHERID=int.Parse(dt.Rows[n]["HEADTEACHERID"].ToString());
 					}
 					if(dt.Rows[n]["GRADEID"]!=null && dt.Rows[n]["GRADEID"].ToString()!="")
 					{
-					//model.GRADEID=dt.Rows[n]["GRADEID"].ToString();
+						model.GRADEID=int.Parse(dt.Rows[n]["GRADEID"].ToString());
 					}
 					if(dt.Rows[n]["NAME"]!=null && dt.Rows[n]["NAME"].ToString()!="")
 					{
@@ -120,7 +117,7 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["KIDCOUNT"]!=null && dt.Rows[n]["KIDCOUNT"].ToString()!="")
 					{
-					//model.KIDCOUNT=dt.Rows[n]["KIDCOUNT"].ToString();
+						model.KIDCOUNT=int.Parse(dt.Rows[n]["KIDCOUNT"].ToString());
 					}
 					modelList.Add(model);
 				}

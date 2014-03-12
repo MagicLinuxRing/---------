@@ -11,8 +11,8 @@ namespace ForKids.DB.Model
 		{}
 		#region Model
 		private int _id;
-		private short _gurdianid;
-		private short _mettingid;
+		private int? _gurdianid;
+		private int? _mettingid;
 		private bool _isattend= false;
 		private string _attenddate;
 		private string _description;
@@ -27,7 +27,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 监护人ID
 		/// </summary>
-		public short GURDIANID
+		public int? GURDIANID
 		{
 			set{ _gurdianid=value;}
 			get{return _gurdianid;}
@@ -35,7 +35,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 会议ID
 		/// </summary>
-		public short METTINGID
+		public int? METTINGID
 		{
 			set{ _mettingid=value;}
 			get{return _mettingid;}

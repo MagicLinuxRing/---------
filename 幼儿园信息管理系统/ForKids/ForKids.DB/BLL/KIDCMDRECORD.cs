@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Collections.Generic;
-
 using ForKids.DB.Model;
-
 using ForKids.DB.IDAL;
 namespace ForKids.DB.BLL
 {
@@ -108,15 +106,15 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["KIDID"]!=null && dt.Rows[n]["KIDID"].ToString()!="")
 					{
-					//model.KIDID=dt.Rows[n]["KIDID"].ToString();
+						model.KIDID=int.Parse(dt.Rows[n]["KIDID"].ToString());
 					}
 					if(dt.Rows[n]["COMMAND"]!=null && dt.Rows[n]["COMMAND"].ToString()!="")
 					{
 					model.COMMAND=dt.Rows[n]["COMMAND"].ToString();
 					}
-					if(dt.Rows[n]["USERNAME"]!=null && dt.Rows[n]["USERNAME"].ToString()!="")
+					if(dt.Rows[n]["USERID"]!=null && dt.Rows[n]["USERID"].ToString()!="")
 					{
-					model.USERNAME=dt.Rows[n]["USERNAME"].ToString();
+						model.USERID=int.Parse(dt.Rows[n]["USERID"].ToString());
 					}
 					modelList.Add(model);
 				}

@@ -74,6 +74,7 @@ namespace ForKids.DB.BLL
 			return dal.GetModel(ID);
 		}
 
+
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
@@ -106,10 +107,6 @@ namespace ForKids.DB.BLL
 					{
 						model.ID=int.Parse(dt.Rows[n]["ID"].ToString());
 					}
-					if(dt.Rows[n]["RELATIONSHIP"]!=null && dt.Rows[n]["RELATIONSHIP"].ToString()!="")
-					{
-					model.RELATIONSHIP=dt.Rows[n]["RELATIONSHIP"].ToString();
-					}
 					if(dt.Rows[n]["NAME"]!=null && dt.Rows[n]["NAME"].ToString()!="")
 					{
 					model.NAME=dt.Rows[n]["NAME"].ToString();
@@ -120,7 +117,7 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["AGE"]!=null && dt.Rows[n]["AGE"].ToString()!="")
 					{
-					//model.AGE=dt.Rows[n]["AGE"].ToString();
+						model.AGE=int.Parse(dt.Rows[n]["AGE"].ToString());
 					}
 					if(dt.Rows[n]["SEX"]!=null && dt.Rows[n]["SEX"].ToString()!="")
 					{

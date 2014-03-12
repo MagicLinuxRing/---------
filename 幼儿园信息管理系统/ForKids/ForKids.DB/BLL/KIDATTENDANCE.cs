@@ -74,6 +74,7 @@ namespace ForKids.DB.BLL
 			return dal.GetModel(ID);
 		}
 
+
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
@@ -108,11 +109,11 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["KIDID"]!=null && dt.Rows[n]["KIDID"].ToString()!="")
 					{
-					//model.KIDID=dt.Rows[n]["KIDID"].ToString();
+						model.KIDID=int.Parse(dt.Rows[n]["KIDID"].ToString());
 					}
 					if(dt.Rows[n]["COURSEID"]!=null && dt.Rows[n]["COURSEID"].ToString()!="")
 					{
-					//model.COURSEID=dt.Rows[n]["COURSEID"].ToString();
+						model.COURSEID=int.Parse(dt.Rows[n]["COURSEID"].ToString());
 					}
 					if(dt.Rows[n]["ISATTEND"]!=null && dt.Rows[n]["ISATTEND"].ToString()!="")
 					{
@@ -146,7 +147,6 @@ namespace ForKids.DB.BLL
 		{
 			return GetList("");
 		}
-
 		#endregion  Method
 	}
 }

@@ -11,8 +11,8 @@ namespace ForKids.DB.Model
 		{}
 		#region Model
 		private int _id;
-		private short _kidid;
-		private short _chargeid;
+		private int? _kidid;
+		private int? _chargeid;
 		private double? _payment;
 		private DateTime? _paydate;
 		/// <summary>
@@ -26,7 +26,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 幼儿ID
 		/// </summary>
-		public short KIDID
+		public int? KIDID
 		{
 			set{ _kidid=value;}
 			get{return _kidid;}
@@ -34,7 +34,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 收费项ID
 		/// </summary>
-		public short CHARGEID
+		public int? CHARGEID
 		{
 			set{ _chargeid=value;}
 			get{return _chargeid;}

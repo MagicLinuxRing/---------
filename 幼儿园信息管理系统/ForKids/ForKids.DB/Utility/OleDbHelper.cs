@@ -58,6 +58,10 @@ namespace ForKids.DB.Utility
                 {
                     foreach (OleDbParameter parameter in parameters)
                     {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
                         cmd.Parameters.Add(parameter);
                     }
                 }
@@ -84,6 +88,10 @@ namespace ForKids.DB.Utility
                 {
                     foreach (OleDbParameter parameter in parameters)
                     {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
                         cmd.Parameters.Add(parameter);
                     }
                 }
@@ -146,12 +154,38 @@ namespace ForKids.DB.Utility
                 {
                     foreach (OleDbParameter parameter in parameters)
                     {
+                        if (parameter.Value == null)
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
                         cmd.Parameters.Add(parameter);
                     }
                 }
                 int rows = 0;
                 rows = cmd.ExecuteNonQuery();
                 return rows;
+            }
+        }
+
+        private static void PrepareCommand(OleDbCommand cmd, OleDbConnection conn, OleDbTransaction trans, string cmdText, OleDbParameter[] cmdParms)
+        {
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+            cmd.Connection = conn;
+            cmd.CommandText = cmdText;
+            if (trans != null)
+                cmd.Transaction = trans;
+            cmd.CommandType = CommandType.Text;//cmdType;
+            if (cmdParms != null)
+            {
+                foreach (OleDbParameter parm in cmdParms)
+                {
+                    if (parm.Value == null)
+                    {
+                        parm.Value = DBNull.Value;
+                    }
+                    cmd.Parameters.Add(parm);
+                }
             }
         }
 

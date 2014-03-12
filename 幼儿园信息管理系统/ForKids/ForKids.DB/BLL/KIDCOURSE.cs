@@ -108,15 +108,15 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["KIDID"]!=null && dt.Rows[n]["KIDID"].ToString()!="")
 					{
-					//model.KIDID=dt.Rows[n]["KIDID"].ToString();
+						model.KIDID=int.Parse(dt.Rows[n]["KIDID"].ToString());
 					}
 					if(dt.Rows[n]["COURSEID"]!=null && dt.Rows[n]["COURSEID"].ToString()!="")
 					{
-					//model.COURSEID=dt.Rows[n]["COURSEID"].ToString();
+						model.COURSEID=int.Parse(dt.Rows[n]["COURSEID"].ToString());
 					}
 					if(dt.Rows[n]["ATTENDANCE"]!=null && dt.Rows[n]["ATTENDANCE"].ToString()!="")
 					{
-					//model.ATTENDANCE=dt.Rows[n]["ATTENDANCE"].ToString();
+                        model.ATTENDANCE=double.Parse(dt.Rows[n]["ATTENDANCE"].ToString());
 					}
 					if(dt.Rows[n]["PERFORMANCE"]!=null && dt.Rows[n]["PERFORMANCE"].ToString()!="")
 					{
@@ -124,7 +124,7 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["CREDIT"]!=null && dt.Rows[n]["CREDIT"].ToString()!="")
 					{
-					//model.CREDIT=dt.Rows[n]["CREDIT"].ToString();
+						model.CREDIT=int.Parse(dt.Rows[n]["CREDIT"].ToString());
 					}
 					modelList.Add(model);
 				}

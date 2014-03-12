@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Forms Class ="BAISF.CfgForm" Version ="1.0">
+  <KidBaseForm Name ="幼儿基本信息窗体" CellWidth = "192" CellHeight = "20" CellHDis = "8" CellVDis = "5"
+      CellHCount = "3" CellVCount = "16" >
+    <SFields>
+      <SField Name ="PHOTO" HasLabel ="false" Label ="" InputType ="Image" Data =""
+              StartRowIndex="0" StartColIndex="0" RowSpan="8" ColSpan="1"></SField>
+      
+      <SField Name ="STUDENTID" HasLabel ="true" Label ="学    号：" InputType ="String" Data =""
+              StartRowIndex="0" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="NAME" HasLabel ="true" Label ="姓    名：" InputType ="String" Data =""
+              StartRowIndex="2" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="GURDIANID" HasLabel ="true" Label ="监护人ID：" InputType ="Int" Data =""
+              StartRowIndex="4" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="AGE" HasLabel ="true" Label ="年    龄：" InputType ="Int" Data =""
+              StartRowIndex="6" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      
+      <SField Name ="SEX" HasLabel ="true" Label ="性    别：" InputType ="Boolean" Data ="男;女"
+              StartRowIndex="0" StartColIndex="2" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="INDATE" HasLabel ="true" Label ="入学日期：" InputType ="Date" Data =""
+              StartRowIndex="2" StartColIndex="2" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="INSURANCE" HasLabel ="true" Label ="保    险：" InputType ="Double" Data =""
+              StartRowIndex="4" StartColIndex="2" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="CLASSID" HasLabel ="true" Label ="班    级：" InputType ="Int" Data =""
+              StartRowIndex="6" StartColIndex="2" RowSpan="2" ColSpan="1"></SField>
+
+      <SField Name ="HEIGHT" HasLabel ="true" Label ="身    高：" InputType ="Double" Data =""
+              StartRowIndex="8" StartColIndex="0" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="WEIGHT" HasLabel ="true" Label ="体    重：" InputType ="Double" Data =""
+              StartRowIndex="8" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="MEDICALRECORD" HasLabel ="true" Label ="体检记录：" InputType ="String" Data =""
+              StartRowIndex="8" StartColIndex="2" RowSpan="2" ColSpan="1"></SField>
+      
+      <SField Name ="TRANSFERRECORD" HasLabel ="true" Label ="调班记录：" InputType ="String" Data =""
+              StartRowIndex="10" StartColIndex="0" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="SHUTTLEROUTE" HasLabel ="true" Label ="接送路线：" InputType ="String" Data =""
+              StartRowIndex="10" StartColIndex="1" RowSpan="2" ColSpan="2"></SField>
+      <SField Name ="TEACHERADVICE" HasLabel ="true" Label ="教师评价：" InputType ="MultiLine" Data =""
+              StartRowIndex="12" StartColIndex="0" RowSpan="3" ColSpan="3"></SField>
+    </SFields>
+  </KidBaseForm>
+  <GurdianBaseForm Name ="监护人基本信息窗体" CellWidth = "192" CellHeight = "20" CellHDis = "8" CellVDis = "5"
+      CellHCount = "2" CellVCount = "15" >
+    <SFields>
+      <SField Name ="PHOTO" HasLabel ="false" Label ="" InputType ="Image" Data =""
+              StartRowIndex="0" StartColIndex="0" RowSpan="8" ColSpan="1"></SField>
+      
+      <SField Name ="NAME" HasLabel ="true" Label ="姓  名：" InputType ="String" Data =""
+              StartRowIndex="0" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="IDNUMBER" HasLabel ="true" Label ="身份证号：" InputType ="String" Data =""
+              StartRowIndex="2" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="AGE" HasLabel ="true" Label ="年  龄：" InputType ="Int" Data =""
+              StartRowIndex="4" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="SEX" HasLabel ="true" Label ="性  别：" InputType ="Boolean" Data ="男;女"
+              StartRowIndex="6" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      
+      <SField Name ="PHONE" HasLabel ="true" Label ="电  话：" InputType ="String" Data =""
+              StartRowIndex="8" StartColIndex="0" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="EXPHONE" HasLabel ="true" Label ="电 话2：" InputType ="String" Data =""
+              StartRowIndex="8" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+
+      <SField Name ="ADDRESS" HasLabel ="true" Label ="家庭地址：" InputType ="MultiLine" Data =""
+              StartRowIndex="10" StartColIndex="0" RowSpan="2" ColSpan="2"></SField>
+      <SField Name ="FAMILYINFO" HasLabel ="true" Label ="家庭信息：" InputType ="MultiLine" Data =""
+              StartRowIndex="12" StartColIndex="0" RowSpan="2" ColSpan="2"></SField>
+    </SFields>
+  </GurdianBaseForm>
+  <TeacherBaseForm Name ="教工信息窗体" CellWidth = "192" CellHeight = "20" CellHDis = "8" CellVDis = "5" 
+      CellHCount = "2" CellVCount = "14" >
+    <SFields>
+      <SField Name ="PHOTO" HasLabel ="false" Label ="" InputType ="Image" Data =""
+              StartRowIndex="0" StartColIndex="0" RowSpan="8" ColSpan="1"></SField>
+      <SField Name ="JOBNUMBER" HasLabel ="true" Label ="工  号：" InputType ="String" Data =""
+              StartRowIndex="0" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="NAME" HasLabel ="true" Label ="姓  名：" InputType ="String" Data =""
+              StartRowIndex="2" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="AGE" HasLabel ="true" Label ="年  龄：" InputType ="Int" Data =""
+              StartRowIndex="4" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="SEX" HasLabel ="true" Label ="性  别：" InputType ="Boolean" Data ="男;女"
+              StartRowIndex="6" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="PHONE" HasLabel ="true" Label ="电  话：" InputType ="String" Data =""
+              StartRowIndex="8" StartColIndex="0" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="EXPHONE" HasLabel ="true" Label ="电 话2：" InputType ="String" Data =""
+              StartRowIndex="8" StartColIndex="1" RowSpan="2" ColSpan="1"></SField>
+      <SField Name ="DESCRIPTION" HasLabel ="true" Label ="简  介：" InputType ="MultiLine" Data =""
+              StartRowIndex="10" StartColIndex="0" RowSpan="3" ColSpan="2"></SField>
+    </SFields>
+  </TeacherBaseForm>
+  
+</Forms>

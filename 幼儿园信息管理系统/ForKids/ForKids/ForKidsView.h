@@ -15,6 +15,9 @@
 #pragma once
 #pragma once
 using namespace System::Windows::Forms;
+using namespace ForKids::UI;
+
+class CForKidsDoc;
 
 class CForKidsView : public CView
 {
@@ -23,7 +26,7 @@ protected: // 仅从序列化创建
 	DECLARE_DYNCREATE(CForKidsView)
 
 protected:
-	gcroot<Panel^> m_gcMainPanel;
+	gcroot<MainPanel^> m_gcMainPanel;
 	bool m_bLoadMainPanel;
 // 特性
 public:
@@ -40,6 +43,8 @@ protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
+
+	virtual void OnInitialUpdate();
 
 // 实现
 public:
@@ -59,6 +64,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+
+	//void DockControl(Control^ gcCtrl);
+	void DockControl(const char* strFormName);
+
 };
 
 #ifndef _DEBUG  // ForKidsView.cpp 中的调试版本

@@ -11,10 +11,9 @@ namespace ForKids.DB.Model
 		{}
 		#region Model
 		private int _id;
-		private string _relationship;
 		private string _name;
 		private string _idnumber;
-		private short _age;
+		private int _age;
 		private bool _sex= false;
 		private byte[] _photo;
 		private string _phone;
@@ -24,19 +23,11 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 标识
 		/// </summary>
-		public int ID
-		{
-			set{ _id=value;}
-			get{return _id;}
-		}
-		/// <summary>
-		/// 关系
-		/// </summary>
-		public string RELATIONSHIP
-		{
-			set{ _relationship=value;}
-			get{return _relationship;}
-		}
+        public int ID
+        {
+            set { _id = value; }
+            get { return _id; }
+        }
 		/// <summary>
 		/// 姓名
 		/// </summary>
@@ -56,7 +47,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 年龄
 		/// </summary>
-		public short AGE
+		public int AGE
 		{
 			set{ _age=value;}
 			get{return _age;}

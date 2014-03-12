@@ -190,7 +190,7 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["ATTENDANCE"]!=null && ds.Tables[0].Rows[0]["ATTENDANCE"].ToString()!="")
 				{
-					//model.ATTENDANCE=ds.Tables[0].Rows[0]["ATTENDANCE"].ToString();
+                    model.ATTENDANCE=double.Parse(ds.Tables[0].Rows[0]["ATTENDANCE"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["SUMMARY"]!=null && ds.Tables[0].Rows[0]["SUMMARY"].ToString()!="")
 				{

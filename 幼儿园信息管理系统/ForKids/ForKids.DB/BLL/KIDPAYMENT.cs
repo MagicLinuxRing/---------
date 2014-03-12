@@ -108,15 +108,15 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["KIDID"]!=null && dt.Rows[n]["KIDID"].ToString()!="")
 					{
-					//model.KIDID=dt.Rows[n]["KIDID"].ToString();
+						model.KIDID=int.Parse(dt.Rows[n]["KIDID"].ToString());
 					}
 					if(dt.Rows[n]["CHARGEID"]!=null && dt.Rows[n]["CHARGEID"].ToString()!="")
 					{
-					//model.CHARGEID=dt.Rows[n]["CHARGEID"].ToString();
+						model.CHARGEID=int.Parse(dt.Rows[n]["CHARGEID"].ToString());
 					}
 					if(dt.Rows[n]["PAYMENT"]!=null && dt.Rows[n]["PAYMENT"].ToString()!="")
 					{
-					//model.PAYMENT=dt.Rows[n]["PAYMENT"].ToString();
+					    model.PAYMENT=double.Parse(dt.Rows[n]["PAYMENT"].ToString());
 					}
 					if(dt.Rows[n]["PAYDATE"]!=null && dt.Rows[n]["PAYDATE"].ToString()!="")
 					{

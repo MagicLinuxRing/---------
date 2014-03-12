@@ -74,6 +74,7 @@ namespace ForKids.DB.BLL
 			return dal.GetModel(ID);
 		}
 
+
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>

@@ -51,10 +51,10 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append(" values (");
 			strSql.Append("@HEADTEACHERID,@GRADEID,@NAME,@KIDCOUNT)");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@HEADTEACHERID", OleDbType.SmallInt),
-					new OleDbParameter("@GRADEID", OleDbType.SmallInt),
+					new OleDbParameter("@HEADTEACHERID", OleDbType.Integer,4),
+					new OleDbParameter("@GRADEID", OleDbType.Integer,4),
 					new OleDbParameter("@NAME", OleDbType.VarChar,30),
-					new OleDbParameter("@KIDCOUNT", OleDbType.SmallInt)};
+					new OleDbParameter("@KIDCOUNT", OleDbType.Integer,4)};
 			parameters[0].Value = model.HEADTEACHERID;
 			parameters[1].Value = model.GRADEID;
 			parameters[2].Value = model.NAME;
@@ -83,10 +83,10 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append("KIDCOUNT=@KIDCOUNT");
 			strSql.Append(" where ID=@ID");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@HEADTEACHERID", OleDbType.SmallInt),
-					new OleDbParameter("@GRADEID", OleDbType.SmallInt),
+					new OleDbParameter("@HEADTEACHERID", OleDbType.Integer,4),
+					new OleDbParameter("@GRADEID", OleDbType.Integer,4),
 					new OleDbParameter("@NAME", OleDbType.VarChar,30),
-					new OleDbParameter("@KIDCOUNT", OleDbType.SmallInt),
+					new OleDbParameter("@KIDCOUNT", OleDbType.Integer,4),
 					new OleDbParameter("@ID", OleDbType.Integer,4)};
 			parameters[0].Value = model.HEADTEACHERID;
 			parameters[1].Value = model.GRADEID;
@@ -173,11 +173,11 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["HEADTEACHERID"]!=null && ds.Tables[0].Rows[0]["HEADTEACHERID"].ToString()!="")
 				{
-					//model.HEADTEACHERID=ds.Tables[0].Rows[0]["HEADTEACHERID"].ToString();
+					model.HEADTEACHERID=int.Parse(ds.Tables[0].Rows[0]["HEADTEACHERID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["GRADEID"]!=null && ds.Tables[0].Rows[0]["GRADEID"].ToString()!="")
 				{
-					//model.GRADEID=ds.Tables[0].Rows[0]["GRADEID"].ToString();
+					model.GRADEID=int.Parse(ds.Tables[0].Rows[0]["GRADEID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["NAME"]!=null && ds.Tables[0].Rows[0]["NAME"].ToString()!="")
 				{
@@ -185,7 +185,7 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["KIDCOUNT"]!=null && ds.Tables[0].Rows[0]["KIDCOUNT"].ToString()!="")
 				{
-					//model.KIDCOUNT=ds.Tables[0].Rows[0]["KIDCOUNT"].ToString();
+					model.KIDCOUNT=int.Parse(ds.Tables[0].Rows[0]["KIDCOUNT"].ToString());
 				}
 				return model;
 			}
@@ -221,7 +221,7 @@ namespace ForKids.DB.OleDbDAL
 			{
 				strSql.Append(" where "+strWhere);
 			}
-			object obj = DbHelperOleDb.GetSingle(strSql.ToString());
+            object obj = DbHelperOleDb.GetSingle(strSql.ToString());
 			if (obj == null)
 			{
 				return 0;

@@ -47,16 +47,16 @@ namespace ForKids.DB.OleDbDAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into KIDCMDRECORD(");
-			strSql.Append("KIDID,COMMAND,USERNAME)");
+			strSql.Append("KIDID,COMMAND,USERID)");
 			strSql.Append(" values (");
-			strSql.Append("@KIDID,@COMMAND,@USERNAME)");
+			strSql.Append("@KIDID,@COMMAND,@USERID)");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@KIDID", OleDbType.SmallInt),
+					new OleDbParameter("@KIDID", OleDbType.Integer,4),
 					new OleDbParameter("@COMMAND", OleDbType.VarChar,255),
-					new OleDbParameter("@USERNAME", OleDbType.VarChar,255)};
+					new OleDbParameter("@USERID", OleDbType.Integer,4)};
 			parameters[0].Value = model.KIDID;
 			parameters[1].Value = model.COMMAND;
-			parameters[2].Value = model.USERNAME;
+			parameters[2].Value = model.USERID;
 
 			int rows=DbHelperOleDb.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -77,16 +77,16 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append("update KIDCMDRECORD set ");
 			strSql.Append("KIDID=@KIDID,");
 			strSql.Append("COMMAND=@COMMAND,");
-			strSql.Append("USERNAME=@USERNAME");
+			strSql.Append("USERID=@USERID");
 			strSql.Append(" where ID=@ID");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@KIDID", OleDbType.SmallInt),
+					new OleDbParameter("@KIDID", OleDbType.Integer,4),
 					new OleDbParameter("@COMMAND", OleDbType.VarChar,255),
-					new OleDbParameter("@USERNAME", OleDbType.VarChar,255),
+					new OleDbParameter("@USERID", OleDbType.Integer,4),
 					new OleDbParameter("@ID", OleDbType.Integer,4)};
 			parameters[0].Value = model.KIDID;
 			parameters[1].Value = model.COMMAND;
-			parameters[2].Value = model.USERNAME;
+			parameters[2].Value = model.USERID;
 			parameters[3].Value = model.ID;
 
 			int rows=DbHelperOleDb.ExecuteSql(strSql.ToString(),parameters);
@@ -143,6 +143,7 @@ namespace ForKids.DB.OleDbDAL
 			}
 		}
 
+
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
@@ -150,7 +151,7 @@ namespace ForKids.DB.OleDbDAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select ID,KIDID,COMMAND,USERNAME from KIDCMDRECORD ");
+			strSql.Append("select ID,KIDID,COMMAND,USERID from KIDCMDRECORD ");
 			strSql.Append(" where ID=@ID");
 			OleDbParameter[] parameters = {
 					new OleDbParameter("@ID", OleDbType.Integer,4)
@@ -167,15 +168,15 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["KIDID"]!=null && ds.Tables[0].Rows[0]["KIDID"].ToString()!="")
 				{
-					//model.KIDID=ds.Tables[0].Rows[0]["KIDID"].ToString();
+					model.KIDID=int.Parse(ds.Tables[0].Rows[0]["KIDID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["COMMAND"]!=null && ds.Tables[0].Rows[0]["COMMAND"].ToString()!="")
 				{
 					model.COMMAND=ds.Tables[0].Rows[0]["COMMAND"].ToString();
 				}
-				if(ds.Tables[0].Rows[0]["USERNAME"]!=null && ds.Tables[0].Rows[0]["USERNAME"].ToString()!="")
+				if(ds.Tables[0].Rows[0]["USERID"]!=null && ds.Tables[0].Rows[0]["USERID"].ToString()!="")
 				{
-					model.USERNAME=ds.Tables[0].Rows[0]["USERNAME"].ToString();
+					model.USERID=int.Parse(ds.Tables[0].Rows[0]["USERID"].ToString());
 				}
 				return model;
 			}
@@ -191,7 +192,7 @@ namespace ForKids.DB.OleDbDAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select ID,KIDID,COMMAND,USERNAME ");
+			strSql.Append("select ID,KIDID,COMMAND,USERID ");
 			strSql.Append(" FROM KIDCMDRECORD ");
 			if(strWhere.Trim()!="")
 			{
@@ -211,7 +212,7 @@ namespace ForKids.DB.OleDbDAL
 			{
 				strSql.Append(" where "+strWhere);
 			}
-			object obj = DbHelperOleDb.GetSingle(strSql.ToString());
+            object obj = DbHelperOleDb.GetSingle(strSql.ToString());
 			if (obj == null)
 			{
 				return 0;

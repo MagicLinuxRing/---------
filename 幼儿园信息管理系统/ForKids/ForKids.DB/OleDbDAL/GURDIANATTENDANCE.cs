@@ -51,8 +51,8 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append(" values (");
 			strSql.Append("@GURDIANID,@METTINGID,@ISATTEND,@ATTENDDATE,@DESCRIPTION)");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@GURDIANID", OleDbType.SmallInt),
-					new OleDbParameter("@METTINGID", OleDbType.SmallInt),
+					new OleDbParameter("@GURDIANID", OleDbType.Integer,4),
+					new OleDbParameter("@METTINGID", OleDbType.Integer,4),
 					new OleDbParameter("@ISATTEND", OleDbType.Boolean,1),
 					new OleDbParameter("@ATTENDDATE", OleDbType.VarChar,255),
 					new OleDbParameter("@DESCRIPTION", OleDbType.VarChar,255)};
@@ -86,8 +86,8 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append("DESCRIPTION=@DESCRIPTION");
 			strSql.Append(" where ID=@ID");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@GURDIANID", OleDbType.SmallInt),
-					new OleDbParameter("@METTINGID", OleDbType.SmallInt),
+					new OleDbParameter("@GURDIANID", OleDbType.Integer,4),
+					new OleDbParameter("@METTINGID", OleDbType.Integer,4),
 					new OleDbParameter("@ISATTEND", OleDbType.Boolean,1),
 					new OleDbParameter("@ATTENDDATE", OleDbType.VarChar,255),
 					new OleDbParameter("@DESCRIPTION", OleDbType.VarChar,255),
@@ -178,11 +178,11 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["GURDIANID"]!=null && ds.Tables[0].Rows[0]["GURDIANID"].ToString()!="")
 				{
-					//model.GURDIANID=ds.Tables[0].Rows[0]["GURDIANID"].ToString();
+					model.GURDIANID=int.Parse(ds.Tables[0].Rows[0]["GURDIANID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["METTINGID"]!=null && ds.Tables[0].Rows[0]["METTINGID"].ToString()!="")
 				{
-					//model.METTINGID=ds.Tables[0].Rows[0]["METTINGID"].ToString();
+					model.METTINGID=int.Parse(ds.Tables[0].Rows[0]["METTINGID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["ISATTEND"]!=null && ds.Tables[0].Rows[0]["ISATTEND"].ToString()!="")
 				{

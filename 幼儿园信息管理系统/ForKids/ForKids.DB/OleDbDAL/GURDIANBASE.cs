@@ -47,30 +47,28 @@ namespace ForKids.DB.OleDbDAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into GURDIANBASE(");
-			strSql.Append("RELATIONSHIP,NAME,IDNUMBER,AGE,SEX,PHOTO,PHONE,EXPHONE,ADDRESS,FAMILYINFO)");
+			strSql.Append("NAME,IDNUMBER,AGE,SEX,PHOTO,PHONE,EXPHONE,ADDRESS,FAMILYINFO)");
 			strSql.Append(" values (");
-			strSql.Append("@RELATIONSHIP,@NAME,@IDNUMBER,@AGE,@SEX,@PHOTO,@PHONE,@EXPHONE,@ADDRESS,@FAMILYINFO)");
+            strSql.Append("@NAME,@IDNUMBER,@AGE,@SEX,@PHOTO,@PHONE,@EXPHONE,@ADDRESS,@FAMILYINFO)");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@RELATIONSHIP", OleDbType.VarChar,20),
 					new OleDbParameter("@NAME", OleDbType.VarChar,30),
 					new OleDbParameter("@IDNUMBER", OleDbType.VarChar,20),
-					new OleDbParameter("@AGE", OleDbType.SmallInt),
+					new OleDbParameter("@AGE", OleDbType.Integer,4),
 					new OleDbParameter("@SEX", OleDbType.Boolean,1),
 					new OleDbParameter("@PHOTO", OleDbType.Binary,0),
 					new OleDbParameter("@PHONE", OleDbType.VarChar,20),
 					new OleDbParameter("@EXPHONE", OleDbType.VarChar,20),
 					new OleDbParameter("@ADDRESS", OleDbType.VarChar,255),
 					new OleDbParameter("@FAMILYINFO", OleDbType.VarChar,255)};
-			parameters[0].Value = model.RELATIONSHIP;
-			parameters[1].Value = model.NAME;
-			parameters[2].Value = model.IDNUMBER;
-			parameters[3].Value = model.AGE;
-			parameters[4].Value = model.SEX;
-			parameters[5].Value = model.PHOTO;
-			parameters[6].Value = model.PHONE;
-			parameters[7].Value = model.EXPHONE;
-			parameters[8].Value = model.ADDRESS;
-			parameters[9].Value = model.FAMILYINFO;
+			parameters[0].Value = model.NAME;
+            parameters[1].Value = model.IDNUMBER;
+            parameters[2].Value = model.AGE;
+			parameters[3].Value = model.SEX;
+			parameters[4].Value = model.PHOTO;
+			parameters[5].Value = model.PHONE;
+			parameters[6].Value = model.EXPHONE;
+			parameters[7].Value = model.ADDRESS;
+			parameters[8].Value = model.FAMILYINFO;
 
 			int rows=DbHelperOleDb.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -91,8 +89,8 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append("update GURDIANBASE set ");
 			strSql.Append("RELATIONSHIP=@RELATIONSHIP,");
 			strSql.Append("NAME=@NAME,");
-			strSql.Append("IDNUMBER=@IDNUMBER,");
-			strSql.Append("AGE=@AGE,");
+            strSql.Append("IDNUMBER=@IDNUMBER,");
+            strSql.Append("AGE=@AGE,");
 			strSql.Append("SEX=@SEX,");
 			strSql.Append("PHOTO=@PHOTO,");
 			strSql.Append("PHONE=@PHONE,");
@@ -101,10 +99,9 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append("FAMILYINFO=@FAMILYINFO");
 			strSql.Append(" where ID=@ID");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@RELATIONSHIP", OleDbType.VarChar,20),
 					new OleDbParameter("@NAME", OleDbType.VarChar,30),
 					new OleDbParameter("@IDNUMBER", OleDbType.VarChar,20),
-					new OleDbParameter("@AGE", OleDbType.SmallInt),
+					new OleDbParameter("@AGE", OleDbType.Integer,4),
 					new OleDbParameter("@SEX", OleDbType.Boolean,1),
 					new OleDbParameter("@PHOTO", OleDbType.Binary,0),
 					new OleDbParameter("@PHONE", OleDbType.VarChar,20),
@@ -112,17 +109,16 @@ namespace ForKids.DB.OleDbDAL
 					new OleDbParameter("@ADDRESS", OleDbType.VarChar,255),
 					new OleDbParameter("@FAMILYINFO", OleDbType.VarChar,255),
 					new OleDbParameter("@ID", OleDbType.Integer,4)};
-			parameters[0].Value = model.RELATIONSHIP;
-			parameters[1].Value = model.NAME;
-			parameters[2].Value = model.IDNUMBER;
-			parameters[3].Value = model.AGE;
-			parameters[4].Value = model.SEX;
-			parameters[5].Value = model.PHOTO;
-			parameters[6].Value = model.PHONE;
-			parameters[7].Value = model.EXPHONE;
-			parameters[8].Value = model.ADDRESS;
-			parameters[9].Value = model.FAMILYINFO;
-			parameters[10].Value = model.ID;
+			parameters[0].Value = model.NAME;
+            parameters[1].Value = model.IDNUMBER;
+            parameters[2].Value = model.AGE;
+			parameters[3].Value = model.SEX;
+			parameters[4].Value = model.PHOTO;
+			parameters[5].Value = model.PHONE;
+			parameters[6].Value = model.EXPHONE;
+			parameters[7].Value = model.ADDRESS;
+			parameters[8].Value = model.FAMILYINFO;
+			parameters[9].Value = model.ID;
 
 			int rows=DbHelperOleDb.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -186,7 +182,7 @@ namespace ForKids.DB.OleDbDAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select ID,RELATIONSHIP,NAME,IDNUMBER,AGE,SEX,PHOTO,PHONE,EXPHONE,ADDRESS,FAMILYINFO from GURDIANBASE ");
+			strSql.Append("select ID,NAME,IDNUMBER,AGE,SEX,PHOTO,PHONE,EXPHONE,ADDRESS,FAMILYINFO from GURDIANBASE ");
 			strSql.Append(" where ID=@ID");
 			OleDbParameter[] parameters = {
 					new OleDbParameter("@ID", OleDbType.Integer,4)
@@ -201,10 +197,6 @@ namespace ForKids.DB.OleDbDAL
 				{
 					model.ID=int.Parse(ds.Tables[0].Rows[0]["ID"].ToString());
 				}
-				if(ds.Tables[0].Rows[0]["RELATIONSHIP"]!=null && ds.Tables[0].Rows[0]["RELATIONSHIP"].ToString()!="")
-				{
-					model.RELATIONSHIP=ds.Tables[0].Rows[0]["RELATIONSHIP"].ToString();
-				}
 				if(ds.Tables[0].Rows[0]["NAME"]!=null && ds.Tables[0].Rows[0]["NAME"].ToString()!="")
 				{
 					model.NAME=ds.Tables[0].Rows[0]["NAME"].ToString();
@@ -215,7 +207,7 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["AGE"]!=null && ds.Tables[0].Rows[0]["AGE"].ToString()!="")
 				{
-					//model.AGE=ds.Tables[0].Rows[0]["AGE"].ToString();
+					model.AGE=int.Parse(ds.Tables[0].Rows[0]["AGE"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["SEX"]!=null && ds.Tables[0].Rows[0]["SEX"].ToString()!="")
 				{
@@ -262,7 +254,7 @@ namespace ForKids.DB.OleDbDAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select ID,RELATIONSHIP,NAME,IDNUMBER,AGE,SEX,PHOTO,PHONE,EXPHONE,ADDRESS,FAMILYINFO ");
+			strSql.Append("select ID,NAME,IDNUMBER,AGE,SEX,PHOTO,PHONE,EXPHONE,ADDRESS,FAMILYINFO ");
 			strSql.Append(" FROM GURDIANBASE ");
 			if(strWhere.Trim()!="")
 			{

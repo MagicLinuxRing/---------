@@ -14,6 +14,10 @@
 
 #pragma once
 #include "CalendarBar.h"
+#include "FileView.h"
+#include "ClassView.h"
+#include "OutputWnd.h"
+#include "PropertiesWnd.h"
 #include "Resource.h"
 
 class COutlookBar : public CMFCOutlookBar
@@ -21,6 +25,10 @@ class COutlookBar : public CMFCOutlookBar
 	virtual BOOL AllowShowOnPaneMenu() const { return TRUE; }
 	virtual void GetPaneName(CString& strName) const { BOOL bNameValid = strName.LoadString(IDS_OUTLOOKBAR); ASSERT(bNameValid); if (!bNameValid) strName.Empty(); }
 };
+
+using namespace ForKids::UI;
+
+class CForKidsView;
 
 class CMainFrame : public CFrameWndEx
 {
@@ -35,9 +43,12 @@ public:
 // 操作
 public:
 
+	void SetMainView(CForKidsView* pMainView);
+
 // 重写
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	virtual BOOL LoadFrame(UINT nIDResource, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, CWnd* pParentWnd = NULL, CCreateContext* pContext = NULL);
 
 // 实现
 public:
@@ -56,12 +67,26 @@ protected:  // 控件条嵌入成员
 	CMFCShellTreeCtrl m_wndTree;
 	CCalendarBar      m_wndCalendar;
 	CMFCCaptionBar    m_wndCaptionBar;
+	// 停靠视图窗口
+	CFileView         m_wndFileView;
+	CClassView        m_wndClassView;
+	COutputWnd        m_wndOutput;
+	CPropertiesWnd    m_wndProperties;
 
+	CForKidsView*	  m_pMainView;
+
+	gcroot<KidBaseCtrl^>	  m_gcKidBaseCtrl;
+	gcroot<GuardianBaseCtrl^> m_gcGuardianBaseCtrl;
+	//gcroot<TeacherBaseCtrl<BLL::TEACHERBASE,Model::TEACHERBASE>^>  m_gcTeacherBaseCtrl;
+
+	CString m_strUserCtrlName;
 // 生成的消息映射函数
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnApplicationLook(UINT id);
 	afx_msg void OnUpdateApplicationLook(CCmdUI* pCmdUI);
+	afx_msg LRESULT OnToolbarCreateNew(WPARAM wp, LPARAM lp);
+	afx_msg void OnViewCustomize();
 	afx_msg void OnViewCaptionBar();
 	afx_msg void OnUpdateViewCaptionBar(CCmdUI* pCmdUI);
 	afx_msg void OnOptions();
@@ -72,6 +97,8 @@ protected:
 
 	BOOL CreateOutlookBar(CMFCOutlookBar& bar, UINT uiID, CMFCShellTreeCtrl& tree, CCalendarBar& calendar, int nInitialWidth);
 	BOOL CreateCaptionBar();
+	BOOL CreateDockingWindows();
+	void SetDockingWindowIcons(BOOL bHiColorIcons);
 
 	int FindFocusedOutlookWnd(CMFCOutlookBarTabCtrl** ppOutlookWnd);
 
@@ -82,6 +109,25 @@ public:
 	afx_msg void OnButtonAbout();
 	afx_msg void OnButtonLogin();
 	afx_msg void OnButtonLogoff();
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnMouseLeave();
+	afx_msg void OnViewClassview();
+	afx_msg void OnUpdateViewClassview(CCmdUI *pCmdUI);
+	afx_msg void OnViewOutputwnd();
+	afx_msg void OnUpdateViewOutputwnd(CCmdUI *pCmdUI);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnButtonKidbase();
+	afx_msg void OnButtonGurdianbase();
+
+	void SetRibbonButtonCheck(UINT nID, BOOL bCheck);
+
+	afx_msg void OnUpdateButtonKidbase(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateButtonGurdianbase(CCmdUI *pCmdUI);
+	afx_msg void OnButtonTeacherbase();
+
+	void DockControl(const char* strFormName);
+
+	afx_msg void OnUpdateButtonTeacherbase(CCmdUI *pCmdUI);
 };
 
 

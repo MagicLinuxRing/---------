@@ -89,7 +89,6 @@ namespace ForKids.DB.BLL
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
 		}
-
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>

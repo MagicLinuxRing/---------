@@ -51,11 +51,11 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append(" values (");
 			strSql.Append("@KIDID,@COURSEID,@ATTENDANCE,@PERFORMANCE,@CREDIT)");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@KIDID", OleDbType.SmallInt),
-					new OleDbParameter("@COURSEID", OleDbType.SmallInt),
+					new OleDbParameter("@KIDID", OleDbType.Integer,4),
+					new OleDbParameter("@COURSEID", OleDbType.Integer,4),
 					new OleDbParameter("@ATTENDANCE", OleDbType.Double),
 					new OleDbParameter("@PERFORMANCE", OleDbType.VarChar,255),
-					new OleDbParameter("@CREDIT", OleDbType.SmallInt)};
+					new OleDbParameter("@CREDIT", OleDbType.Integer,4)};
 			parameters[0].Value = model.KIDID;
 			parameters[1].Value = model.COURSEID;
 			parameters[2].Value = model.ATTENDANCE;
@@ -86,11 +86,11 @@ namespace ForKids.DB.OleDbDAL
 			strSql.Append("CREDIT=@CREDIT");
 			strSql.Append(" where ID=@ID");
 			OleDbParameter[] parameters = {
-					new OleDbParameter("@KIDID", OleDbType.SmallInt),
-					new OleDbParameter("@COURSEID", OleDbType.SmallInt),
+					new OleDbParameter("@KIDID", OleDbType.Integer,4),
+					new OleDbParameter("@COURSEID", OleDbType.Integer,4),
 					new OleDbParameter("@ATTENDANCE", OleDbType.Double),
 					new OleDbParameter("@PERFORMANCE", OleDbType.VarChar,255),
-					new OleDbParameter("@CREDIT", OleDbType.SmallInt),
+					new OleDbParameter("@CREDIT", OleDbType.Integer,4),
 					new OleDbParameter("@ID", OleDbType.Integer,4)};
 			parameters[0].Value = model.KIDID;
 			parameters[1].Value = model.COURSEID;
@@ -178,15 +178,15 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["KIDID"]!=null && ds.Tables[0].Rows[0]["KIDID"].ToString()!="")
 				{
-					//model.KIDID=ds.Tables[0].Rows[0]["KIDID"].ToString();
+					model.KIDID=int.Parse(ds.Tables[0].Rows[0]["KIDID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["COURSEID"]!=null && ds.Tables[0].Rows[0]["COURSEID"].ToString()!="")
 				{
-					//model.COURSEID=ds.Tables[0].Rows[0]["COURSEID"].ToString();
+					model.COURSEID=int.Parse(ds.Tables[0].Rows[0]["COURSEID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["ATTENDANCE"]!=null && ds.Tables[0].Rows[0]["ATTENDANCE"].ToString()!="")
 				{
-					//model.ATTENDANCE=ds.Tables[0].Rows[0]["ATTENDANCE"].ToString();
+                    model.ATTENDANCE=double.Parse(ds.Tables[0].Rows[0]["ATTENDANCE"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["PERFORMANCE"]!=null && ds.Tables[0].Rows[0]["PERFORMANCE"].ToString()!="")
 				{
@@ -194,7 +194,7 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["CREDIT"]!=null && ds.Tables[0].Rows[0]["CREDIT"].ToString()!="")
 				{
-					//model.CREDIT=ds.Tables[0].Rows[0]["CREDIT"].ToString();
+					model.CREDIT=int.Parse(ds.Tables[0].Rows[0]["CREDIT"].ToString());
 				}
 				return model;
 			}

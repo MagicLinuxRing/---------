@@ -1,0 +1,15 @@
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\obj\x86\Debug\ForKids.Test.Properties.Resources.resources
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\obj\x86\Debug\ForKids.Test.csproj.GenerateResource.Cache
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\bin\Debug\ForKids.Test.exe
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\bin\Debug\ForKids.Test.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\obj\x86\Debug\ForKids.Test.exe
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\obj\x86\Debug\ForKids.Test.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\bin\Debug\ForKids.UI.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\bin\Debug\ForKids.DB.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\bin\Debug\ForKids.Util.dll
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\bin\Debug\ForKids.UI.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\bin\Debug\ForKids.DB.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\bin\Debug\ForKids.Util.pdb
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\obj\x86\Debug\ForKids.Test.csprojResolveAssemblyReference.cache
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\bin\Debug\FormCfg.xml
+C:\Users\bao\Documents\Visual Studio 2010\Projects\ForKids\ForKids.Test\obj\x86\Debug\ForKids.Test.TestForm.resources

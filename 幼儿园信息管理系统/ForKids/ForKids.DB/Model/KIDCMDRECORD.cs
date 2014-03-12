@@ -11,9 +11,9 @@ namespace ForKids.DB.Model
 		{}
 		#region Model
 		private int _id;
-		private short _kidid;
+		private int? _kidid;
 		private string _command;
-		private string _username;
+		private int? _userid;
 		/// <summary>
 		/// 标识
 		/// </summary>
@@ -25,7 +25,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 幼儿ID
 		/// </summary>
-		public short KIDID
+		public int? KIDID
 		{
 			set{ _kidid=value;}
 			get{return _kidid;}
@@ -39,12 +39,12 @@ namespace ForKids.DB.Model
 			get{return _command;}
 		}
 		/// <summary>
-		/// 操作用户
+		/// 操作用户ID
 		/// </summary>
-		public string USERNAME
+		public int? USERID
 		{
-			set{ _username=value;}
-			get{return _username;}
+			set{ _userid=value;}
+			get{return _userid;}
 		}
 		#endregion Model
 

@@ -18,13 +18,20 @@
 #include "MainFrm.h"
 
 #include "AboutForm.h"
+#include "ForKidsView.h"
 using namespace ForKids;
+
+using namespace ForKids::UI;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 // CMainFrame
+
+#define	KID_BASE_FORM		"KidBaseForm"
+#define	TEACHER_BASE_FORM	"TeacherBaseForm"
+#define	GURDIAN_BASE_FORM	"GurdianBaseForm"
 
 IMPLEMENT_DYNCREATE(CMainFrame, CFrameWndEx)
 
@@ -34,6 +41,8 @@ const UINT uiLastUserToolBarId = uiFirstUserToolBarId + iMaxUserToolbars - 1;
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_WM_CREATE()
+	ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
+	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
 	ON_COMMAND_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnApplicationLook)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnUpdateApplicationLook)
 	ON_COMMAND(ID_VIEW_CAPTION_BAR, &CMainFrame::OnViewCaptionBar)
@@ -46,11 +55,24 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_COMMAND(ID_BUTTON_ABOUT, &CMainFrame::OnButtonAbout)
 	ON_COMMAND(ID_BUTTON_LOGIN, &CMainFrame::OnButtonLogin)
 	ON_COMMAND(ID_BUTTON_LOGOFF, &CMainFrame::OnButtonLogoff)
+	ON_WM_MOUSEMOVE()
+	ON_WM_MOUSELEAVE()
+	ON_COMMAND(ID_VIEW_CLASSVIEW, &CMainFrame::OnViewClassview)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_CLASSVIEW, &CMainFrame::OnUpdateViewClassview)
+	ON_COMMAND(ID_VIEW_OUTPUTWND, &CMainFrame::OnViewOutputwnd)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_OUTPUTWND, &CMainFrame::OnUpdateViewOutputwnd)
+	ON_WM_SIZE()
+	ON_COMMAND(ID_BUTTON_KIDBASE, &CMainFrame::OnButtonKidbase)
+	ON_COMMAND(ID_BUTTON_GURDIANBASE, &CMainFrame::OnButtonGurdianbase)
+	ON_UPDATE_COMMAND_UI(ID_BUTTON_KIDBASE, &CMainFrame::OnUpdateButtonKidbase)
+	ON_UPDATE_COMMAND_UI(ID_BUTTON_GURDIANBASE, &CMainFrame::OnUpdateButtonGurdianbase)
+	ON_COMMAND(ID_BUTTON_TEACHERBASE, &CMainFrame::OnButtonTeacherbase)
+	ON_UPDATE_COMMAND_UI(ID_BUTTON_TEACHERBASE, &CMainFrame::OnUpdateButtonTeacherbase)
 END_MESSAGE_MAP()
 
 // CMainFrame 构造/析构
 
-CMainFrame::CMainFrame():m_bLogin(FALSE)
+CMainFrame::CMainFrame():m_bLogin(FALSE),m_pMainView(NULL)
 {
 	// TODO: 在此添加成员初始化代码
 	theApp.m_nAppLook = theApp.GetInt(_T("ApplicationLook"), ID_VIEW_APPLOOK_OFF_2007_BLUE);
@@ -58,6 +80,26 @@ CMainFrame::CMainFrame():m_bLogin(FALSE)
 
 CMainFrame::~CMainFrame()
 {
+}
+
+LRESULT CMainFrame::OnToolbarCreateNew(WPARAM wp,LPARAM lp)
+{
+	LRESULT lres = CFrameWndEx::OnToolbarCreateNew(wp,lp);
+	if (lres == 0)
+	{
+		return 0;
+	}
+
+	CMFCToolBar* pUserToolbar = (CMFCToolBar*)lres;
+	ASSERT_VALID(pUserToolbar);
+
+	BOOL bNameValid;
+	CString strCustomize;
+	bNameValid = strCustomize.LoadString(IDS_TOOLBAR_CUSTOMIZE);
+	ASSERT(bNameValid);
+
+	pUserToolbar->EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
+	return lres;
 }
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -71,7 +113,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndRibbonBar.Create(this);
 	m_wndRibbonBar.LoadFromResource(IDR_RIBBON);
-
 	if (!m_wndStatusBar.Create(this))
 	{
 		TRACE0("未能创建状态栏\n");
@@ -113,8 +154,71 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_LEFT);
 	EnableAutoHidePanes(CBRS_ALIGN_RIGHT);
 
+	// 创建停靠窗口
+	if (!CreateDockingWindows())
+	{
+		TRACE0("未能创建停靠窗口\n");
+		return -1;
+	}
+
+	m_wndFileView.EnableDocking(CBRS_ALIGN_ANY);
+	m_wndClassView.EnableDocking(CBRS_ALIGN_ANY);
+	DockPane(&m_wndFileView);
+	CDockablePane* pTabbedBar = NULL;
+	m_wndClassView.AttachToTabWnd(&m_wndFileView, DM_SHOW, TRUE, &pTabbedBar);
+	m_wndOutput.EnableDocking(CBRS_ALIGN_ANY);
+	DockPane(&m_wndOutput);
+	m_wndProperties.EnableDocking(CBRS_ALIGN_ANY);
+	DockPane(&m_wndProperties);
+
+	CString strCustomize;
+	bNameValid = strCustomize.LoadString(IDS_TOOLBAR_CUSTOMIZE);
+	ASSERT(bNameValid);
+//	EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
+	// 启用工具栏和停靠窗口菜单替换
+	EnablePaneMenu(TRUE, ID_VIEW_CUSTOMIZE, strCustomize, ID_VIEW_TOOLBAR);
+
+	// 启用菜单个性化(最近使用的命令)
+	// TODO: 定义您自己的基本命令，确保每个下拉菜单至少有一个基本命令。
+	CList<UINT, UINT> lstBasicCommands;
+
+	lstBasicCommands.AddTail(ID_FILE_NEW);
+	lstBasicCommands.AddTail(ID_FILE_OPEN);
+	lstBasicCommands.AddTail(ID_FILE_SAVE);
+	lstBasicCommands.AddTail(ID_FILE_PRINT);
+	lstBasicCommands.AddTail(ID_APP_EXIT);
+	lstBasicCommands.AddTail(ID_EDIT_CUT);
+	lstBasicCommands.AddTail(ID_EDIT_PASTE);
+	lstBasicCommands.AddTail(ID_EDIT_UNDO);
+	lstBasicCommands.AddTail(ID_APP_ABOUT);
+	lstBasicCommands.AddTail(ID_VIEW_STATUS_BAR);
+	lstBasicCommands.AddTail(ID_VIEW_TOOLBAR);
+	lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2003);
+	lstBasicCommands.AddTail(ID_VIEW_APPLOOK_VS_2005);
+	lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2007_BLUE);
+	lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2007_SILVER);
+	lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2007_BLACK);
+	lstBasicCommands.AddTail(ID_VIEW_APPLOOK_OFF_2007_AQUA);
+	lstBasicCommands.AddTail(ID_VIEW_APPLOOK_WINDOWS_7);
+	lstBasicCommands.AddTail(ID_SORTING_SORTALPHABETIC);
+	lstBasicCommands.AddTail(ID_SORTING_SORTBYTYPE);
+	lstBasicCommands.AddTail(ID_SORTING_SORTBYACCESS);
+	lstBasicCommands.AddTail(ID_SORTING_GROUPBYTYPE);
+
+	CMFCToolBar::SetBasicCommands(lstBasicCommands);
+
 	return 0;
 }
+
+// CMainFrame 消息处理程序
+
+void CMainFrame::OnViewCustomize()
+{
+	CMFCToolBarsCustomizeDialog* pDlgCust = new CMFCToolBarsCustomizeDialog(this, TRUE /* 扫描菜单*/);
+	pDlgCust->EnableUserDefinedToolbars();
+	pDlgCust->Create();
+}
+
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
@@ -181,6 +285,70 @@ BOOL CMainFrame::CreateOutlookBar(CMFCOutlookBar& bar, UINT uiID, CMFCShellTreeC
 	return TRUE;
 }
 
+BOOL CMainFrame::CreateDockingWindows()
+{
+	BOOL bNameValid;
+
+	// 创建类视图
+	CString strClassView;
+	bNameValid = strClassView.LoadString(IDS_CLASS_VIEW);
+	ASSERT(bNameValid);
+	if (!m_wndClassView.Create(strClassView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_CLASSVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("未能创建“类视图”窗口\n");
+		return FALSE; // 未能创建
+	}
+
+	// 创建文件视图
+	CString strFileView;
+	bNameValid = strFileView.LoadString(IDS_FILE_VIEW);
+	ASSERT(bNameValid);
+	if (!m_wndFileView.Create(strFileView, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_FILEVIEW, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT| CBRS_FLOAT_MULTI))
+	{
+		TRACE0("未能创建“文件视图”窗口\n");
+		return FALSE; // 未能创建
+	}
+
+	// 创建输出窗口
+	CString strOutputWnd;
+	bNameValid = strOutputWnd.LoadString(IDS_OUTPUT_WND);
+	ASSERT(bNameValid);
+	if (!m_wndOutput.Create(strOutputWnd, this, CRect(0, 0, 100, 100), TRUE, ID_VIEW_OUTPUTWND, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_BOTTOM | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("未能创建输出窗口\n");
+		return FALSE; // 未能创建
+	}
+
+	// 创建属性窗口
+	CString strPropertiesWnd;
+	bNameValid = strPropertiesWnd.LoadString(IDS_PROPERTIES_WND);
+	ASSERT(bNameValid);
+	if (!m_wndProperties.Create(strPropertiesWnd, this, CRect(0, 0, 200, 200), TRUE, ID_VIEW_PROPERTIESWND, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_RIGHT | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("未能创建“属性”窗口\n");
+		return FALSE; // 未能创建
+	}
+
+	SetDockingWindowIcons(theApp.m_bHiColorIcons);
+	return TRUE;
+}
+
+void CMainFrame::SetDockingWindowIcons(BOOL bHiColorIcons)
+{
+	HICON hFileViewIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_FILE_VIEW_HC : IDI_FILE_VIEW), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
+	m_wndFileView.SetIcon(hFileViewIcon, FALSE);
+
+	HICON hClassViewIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_CLASS_VIEW_HC : IDI_CLASS_VIEW), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
+	m_wndClassView.SetIcon(hClassViewIcon, FALSE);
+
+	HICON hOutputBarIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_OUTPUT_WND_HC : IDI_OUTPUT_WND), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
+	m_wndOutput.SetIcon(hOutputBarIcon, FALSE);
+
+	HICON hPropertiesBarIcon = (HICON) ::LoadImage(::AfxGetResourceHandle(), MAKEINTRESOURCE(bHiColorIcons ? IDI_PROPERTIES_WND_HC : IDI_PROPERTIES_WND), IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), 0);
+	m_wndProperties.SetIcon(hPropertiesBarIcon, FALSE);
+
+}
+
 BOOL CMainFrame::CreateCaptionBar()
 {
 	if (!m_wndCaptionBar.Create(WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS, this, ID_VIEW_CAPTION_BAR, -1, TRUE))
@@ -212,6 +380,34 @@ BOOL CMainFrame::CreateCaptionBar()
 
 	return TRUE;
 }
+
+BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParentWnd, CCreateContext* pContext) 
+{
+	// 基类将执行真正的工作
+
+	if (!CFrameWndEx::LoadFrame(nIDResource, dwDefaultStyle, pParentWnd, pContext))
+	{
+		return FALSE;
+	}
+
+	// 为所有用户工具栏启用自定义按钮
+	BOOL bNameValid;
+	CString strCustomize;
+	bNameValid = strCustomize.LoadString(IDS_TOOLBAR_CUSTOMIZE);
+	ASSERT(bNameValid);
+
+	for (int i = 0; i < iMaxUserToolbars; i ++)
+	{
+		CMFCToolBar* pUserToolbar = GetUserToolBarByIndex(i);
+		if (pUserToolbar != NULL)
+		{
+			pUserToolbar->EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
+		}
+	}
+
+	return TRUE;
+}
+
 
 // CMainFrame 诊断
 
@@ -382,4 +578,170 @@ void CMainFrame::OnButtonLogoff()
 	// TODO: 在此添加命令处理程序代码
 	MessageBox(L"注销！");
 	m_bLogin=FALSE;
+}
+
+
+void CMainFrame::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	CString strCaption;
+	strCaption.Format(L"ForKids - %d,%d",point.x,point.y);
+	this->SetWindowText(strCaption);
+	CFrameWndEx::OnMouseMove(nFlags, point);
+}
+
+
+void CMainFrame::OnMouseLeave()
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	this->SetWindowText(L"ForKids - Mouse leave!");
+	CFrameWndEx::OnMouseLeave();
+}
+
+
+void CMainFrame::OnViewClassview()
+{
+	// TODO: 在此添加命令处理程序代码
+	m_wndClassView.ShowPane(!m_wndClassView.IsVisible(),FALSE,TRUE);//.ShowWindow(m_wndClassView.IsVisible() ? SW_HIDE : SW_SHOW);
+	RecalcLayout(FALSE);
+}
+
+
+void CMainFrame::OnUpdateViewClassview(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(m_wndClassView.IsVisible());
+}
+
+void CMainFrame::OnViewOutputwnd()
+{
+	// TODO: 在此添加命令处理程序代码
+	m_wndOutput.ShowWindow(m_wndOutput.IsVisible() ? SW_HIDE : SW_SHOW);
+	RecalcLayout(FALSE);
+}
+
+
+void CMainFrame::OnUpdateViewOutputwnd(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(m_wndOutput.IsVisible());
+}
+
+
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
+{
+	CFrameWndEx::OnSize(nType, cx, cy);
+
+	// 下面效果无效 add by bhw 2014/03/02 21:22
+
+	// 当存在打开子窗口的时候，改变主框架窗口，会存在 有部分不重绘的现象。 thanks to http://jingyan.baidu.com/article/9f7e7ec06e1fe56f29155410.html
+	//CRect rectWnd;
+	//GetClientRect(&rectWnd);
+	//CMFCVisualManager::GetInstance()->OnSetWindowRegion(this, CSize(rectWnd.Width(), rectWnd.Height()));
+	// TODO: 在此处添加消息处理程序代码
+
+}
+
+void CMainFrame::SetMainView( CForKidsView* pMainView )
+{
+	ASSERT(pMainView);
+	m_pMainView = pMainView;
+}
+
+void CMainFrame::SetRibbonButtonCheck(UINT uID, BOOL bCheck)
+{
+	static UINT suLastCheckID = 0;
+
+	CMFCRibbonButton* pRibbonButton =DYNAMIC_DOWNCAST(CMFCRibbonButton,m_wndRibbonBar.FindByID(uID));
+	if(pRibbonButton);
+	{
+		if(bCheck)
+		{
+			if(suLastCheckID != 0)
+				SetRibbonButtonCheck(suLastCheckID,FALSE);
+			suLastCheckID = uID;
+		}
+	}
+}
+
+void CMainFrame::DockControl(const char* strFormName)
+{
+	m_strUserCtrlName= strFormName;
+	this->m_pMainView->DockControl(strFormName);
+}
+
+
+void CMainFrame::OnButtonKidbase()
+{
+	// TODO: 在此添加命令处理程序代码
+	//KidBaseCtrl^ gcKidBaseCtrl = m_gcKidBaseCtrl;
+	//if(gcKidBaseCtrl==nullptr)
+	//{
+	//	m_gcKidBaseCtrl=gcnew KidBaseCtrl();
+	//}
+	//this->m_pMainView->DockControl(m_gcKidBaseCtrl);
+	////SetRibbonButtonCheck(ID_BUTTON_GURDIANBASE,TRUE);
+
+	DockControl(KID_BASE_FORM);
+}
+
+
+
+void CMainFrame::OnUpdateButtonKidbase(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	//KidBaseCtrl^ gcKidBaseCtrl = m_gcKidBaseCtrl;
+	//if(gcKidBaseCtrl!=nullptr)
+	//	pCmdUI->SetCheck(m_gcKidBaseCtrl->Visible);
+
+	pCmdUI->SetCheck(m_strUserCtrlName==KID_BASE_FORM);
+}
+
+
+void CMainFrame::OnButtonGurdianbase()
+{
+	// TODO: 在此添加命令处理程序代码	
+	//GuardianBaseCtrl^ gcGuardianBaseCtrl = m_gcGuardianBaseCtrl;
+	//if(gcGuardianBaseCtrl==nullptr)
+	//{
+	//	m_gcGuardianBaseCtrl=gcnew GuardianBaseCtrl();
+	//}
+	//this->m_pMainView->DockControl(m_gcGuardianBaseCtrl);
+
+	////SetRibbonButtonCheck(ID_BUTTON_GURDIANBASE,TRUE);
+	DockControl(GURDIAN_BASE_FORM);
+}
+
+void CMainFrame::OnUpdateButtonGurdianbase(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	//GuardianBaseCtrl^ gcGuardianBaseCtrl = m_gcGuardianBaseCtrl;
+	//if(gcGuardianBaseCtrl!=nullptr)
+	//	pCmdUI->SetCheck(m_gcGuardianBaseCtrl->Visible);
+	pCmdUI->SetCheck(m_strUserCtrlName==GURDIAN_BASE_FORM);
+}
+
+
+void CMainFrame::OnButtonTeacherbase()
+{
+	// TODO: 在此添加命令处理程序代码	
+	//TeacherBaseCtrl^ gcTeacherBaseCtrl = m_gcTeacherBaseCtrl;
+	//if(gcTeacherBaseCtrl==nullptr)
+	//{
+	//	m_gcTeacherBaseCtrl=gcnew TeacherBaseCtrl<BLL::TEACHERBASE,Model::TEACHERBASE>(L"TeacherBaseForm",L"TEACHERBASE");
+	//}
+	//this->m_pMainView->DockControl(m_gcTeacherBaseCtrl);
+
+	DockControl(TEACHER_BASE_FORM);
+
+}
+
+
+void CMainFrame::OnUpdateButtonTeacherbase(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	//TeacherBaseCtrl^ gcTeacherBaseCtrl = m_gcTeacherBaseCtrl;
+	//if(gcTeacherBaseCtrl!=nullptr)
+	//	pCmdUI->SetCheck(m_gcTeacherBaseCtrl->Visible);
+	pCmdUI->SetCheck(m_strUserCtrlName==TEACHER_BASE_FORM);
 }

@@ -73,7 +73,6 @@ namespace ForKids.DB.BLL
 			
 			return dal.GetModel(ID);
 		}
-
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
@@ -108,19 +107,19 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["CLASSID"]!=null && dt.Rows[n]["CLASSID"].ToString()!="")
 					{
-					//model.CLASSID=dt.Rows[n]["CLASSID"].ToString();
+						model.CLASSID=int.Parse(dt.Rows[n]["CLASSID"].ToString());
 					}
 					if(dt.Rows[n]["COURSEID"]!=null && dt.Rows[n]["COURSEID"].ToString()!="")
 					{
-					//model.COURSEID=dt.Rows[n]["COURSEID"].ToString();
+						model.COURSEID=int.Parse(dt.Rows[n]["COURSEID"].ToString());
 					}
 					if(dt.Rows[n]["ATTENDANCE"]!=null && dt.Rows[n]["ATTENDANCE"].ToString()!="")
 					{
-					//model.ATTENDANCE=dt.Rows[n]["ATTENDANCE"].ToString();
+                        model.ATTENDANCE = double.Parse(dt.Rows[n]["ATTENDANCE"].ToString());
 					}
 					if(dt.Rows[n]["TEACHERID"]!=null && dt.Rows[n]["TEACHERID"].ToString()!="")
 					{
-					//model.TEACHERID=dt.Rows[n]["TEACHERID"].ToString();
+						model.TEACHERID=int.Parse(dt.Rows[n]["TEACHERID"].ToString());
 					}
 					if(dt.Rows[n]["SUMMARY"]!=null && dt.Rows[n]["SUMMARY"].ToString()!="")
 					{

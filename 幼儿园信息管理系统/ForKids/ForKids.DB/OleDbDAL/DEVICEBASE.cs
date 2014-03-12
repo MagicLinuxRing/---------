@@ -192,7 +192,7 @@ namespace ForKids.DB.OleDbDAL
 				}
 				if(ds.Tables[0].Rows[0]["FUNDING"]!=null && ds.Tables[0].Rows[0]["FUNDING"].ToString()!="")
 				{
-					//model.FUNDING=ds.Tables[0].Rows[0]["FUNDING"].ToString();
+                    model.FUNDING = double.Parse(ds.Tables[0].Rows[0]["FUNDING"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["LOSSINFO"]!=null && ds.Tables[0].Rows[0]["LOSSINFO"].ToString()!="")
 				{

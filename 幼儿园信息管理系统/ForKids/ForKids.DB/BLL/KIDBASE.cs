@@ -120,15 +120,15 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["AGE"]!=null && dt.Rows[n]["AGE"].ToString()!="")
 					{
-					//model.AGE=dt.Rows[n]["AGE"].ToString();
+						model.AGE=int.Parse(dt.Rows[n]["AGE"].ToString());
 					}
 					if(dt.Rows[n]["HEIGHT"]!=null && dt.Rows[n]["HEIGHT"].ToString()!="")
 					{
-					//model.HEIGHT=dt.Rows[n]["HEIGHT"].ToString();
+					    model.HEIGHT=double.Parse(dt.Rows[n]["HEIGHT"].ToString());
 					}
 					if(dt.Rows[n]["WEIGHT"]!=null && dt.Rows[n]["WEIGHT"].ToString()!="")
 					{
-					//model.WEIGHT=dt.Rows[n]["WEIGHT"].ToString();
+					    model.WEIGHT=double.Parse(dt.Rows[n]["WEIGHT"].ToString());
 					}
 					if(dt.Rows[n]["SEX"]!=null && dt.Rows[n]["SEX"].ToString()!="")
 					{
@@ -147,11 +147,11 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["INSURANCE"]!=null && dt.Rows[n]["INSURANCE"].ToString()!="")
 					{
-					//model.INSURANCE=dt.Rows[n]["INSURANCE"].ToString();
+                        model.INSURANCE = double.Parse(dt.Rows[n]["INSURANCE"].ToString());
 					}
 					if(dt.Rows[n]["CLASSID"]!=null && dt.Rows[n]["CLASSID"].ToString()!="")
 					{
-					//model.CLASSID=dt.Rows[n]["CLASSID"].ToString();
+						model.CLASSID=int.Parse(dt.Rows[n]["CLASSID"].ToString());
 					}
 					if(dt.Rows[n]["PHOTO"]!=null && dt.Rows[n]["PHOTO"].ToString()!="")
 					{

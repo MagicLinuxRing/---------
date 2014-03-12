@@ -46,5 +46,10 @@ namespace ForKids.UI
                 MessageBox.Show("加载数据源失败！" + ex.Message);
             }
         }
+
+        private void button_add_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

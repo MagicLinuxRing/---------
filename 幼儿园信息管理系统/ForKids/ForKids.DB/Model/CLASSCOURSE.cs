@@ -11,10 +11,10 @@ namespace ForKids.DB.Model
 		{}
 		#region Model
 		private int _id;
-		private short _classid;
-		private short _courseid;
+		private int? _classid;
+		private int? _courseid;
 		private double? _attendance;
-		private short _teacherid;
+		private int? _teacherid;
 		private string _summary;
 		/// <summary>
 		/// 标识
@@ -27,7 +27,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 班级ID
 		/// </summary>
-		public short CLASSID
+		public int? CLASSID
 		{
 			set{ _classid=value;}
 			get{return _classid;}
@@ -35,7 +35,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 课程ID
 		/// </summary>
-		public short COURSEID
+		public int? COURSEID
 		{
 			set{ _courseid=value;}
 			get{return _courseid;}
@@ -51,7 +51,7 @@ namespace ForKids.DB.Model
 		/// <summary>
 		/// 授课老师ID
 		/// </summary>
-		public short TEACHERID
+		public int? TEACHERID
 		{
 			set{ _teacherid=value;}
 			get{return _teacherid;}

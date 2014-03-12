@@ -12,12 +12,16 @@
     <AssemblyName>ForKids.UI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -42,17 +46,72 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CfgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CfgForm.Designer.cs">
+      <DependentUpon>CfgForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KidBaseCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="KidBaseCtrl.Designer.cs">
       <DependentUpon>KidBaseCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainPanel.Designer.cs">
+      <DependentUpon>MainPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GuardianBaseCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GuardianBaseCtrl.Designer.cs">
+      <DependentUpon>GuardianBaseCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCtrls\SDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SCtrls\SDateTimePicker.designer.cs">
+      <DependentUpon>SDateTimePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonHelper.cs" />
+    <Compile Include="BaseCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseCtrl.Designer.cs">
+      <DependentUpon>BaseCtrl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CfgForm.resx">
+      <DependentUpon>CfgForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KidBaseCtrl.resx">
       <DependentUpon>KidBaseCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainPanel.resx">
+      <DependentUpon>MainPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuardianBaseCtrl.resx">
+      <DependentUpon>GuardianBaseCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCtrls\SDateTimePicker.resx">
+      <DependentUpon>SDateTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseCtrl.resx">
+      <DependentUpon>BaseCtrl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +123,20 @@
       <Project>{09A20948-A76D-4FD2-85AC-AEFC9AB4125E}</Project>
       <Name>ForKids.Util</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FormCfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

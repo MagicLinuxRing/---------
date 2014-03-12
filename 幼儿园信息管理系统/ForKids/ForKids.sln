@@ -9,7 +9,33 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForKids.DB", "ForKids.DB\Fo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForKids.Util", "ForKids.Util\ForKids.Util.csproj", "{09A20948-A76D-4FD2-85AC-AEFC9AB4125E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ForKids_Win", "ForKids_Win\ForKids_Win.vcxproj", "{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForKids.Test", "ForKids.Test\ForKids.Test.csproj", "{B6293C78-2499-4721-B958-0084525E9B09}"
+EndProject
 Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 7
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ForKids.DB\\ForKids.DB.csproj
+		SccLocalPath1 = .
+		SccProjectFilePathRelativizedFromConnection1 = ForKids.DB\\
+		SccProjectUniqueName2 = ForKids.UI\\ForKids.UI.csproj
+		SccLocalPath2 = .
+		SccProjectFilePathRelativizedFromConnection2 = ForKids.UI\\
+		SccProjectUniqueName3 = ForKids.Util\\ForKids.Util.csproj
+		SccLocalPath3 = .
+		SccProjectFilePathRelativizedFromConnection3 = ForKids.Util\\
+		SccProjectUniqueName4 = ForKids\\ForKids.vcxproj
+		SccLocalPath4 = .
+		SccProjectFilePathRelativizedFromConnection4 = ForKids\\
+		SccProjectUniqueName5 = ForKids_Win\\ForKids_Win.vcxproj
+		SccLocalPath5 = .
+		SccProjectFilePathRelativizedFromConnection5 = ForKids_Win\\
+		SccProjectUniqueName6 = ForKids.Test\\ForKids.Test.csproj
+		SccLocalPath6 = .
+		SccProjectFilePathRelativizedFromConnection6 = ForKids.Test\\
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -69,6 +95,30 @@ Global
 		{09A20948-A76D-4FD2-85AC-AEFC9AB4125E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{09A20948-A76D-4FD2-85AC-AEFC9AB4125E}.Release|Win32.ActiveCfg = Release|Any CPU
 		{09A20948-A76D-4FD2-85AC-AEFC9AB4125E}.Release|x86.ActiveCfg = Release|Any CPU
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Debug|Win32.Build.0 = Debug|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Debug|x86.ActiveCfg = Debug|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Release|Any CPU.ActiveCfg = Release|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Release|Win32.ActiveCfg = Release|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Release|Win32.Build.0 = Release|Win32
+		{77CC7FFB-0CD9-4FB4-A4C4-BAE3BC7C8BE9}.Release|x86.ActiveCfg = Release|Win32
+		{B6293C78-2499-4721-B958-0084525E9B09}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Debug|Win32.ActiveCfg = Debug|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Debug|x86.ActiveCfg = Debug|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Debug|x86.Build.0 = Debug|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Release|Any CPU.ActiveCfg = Release|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Release|Win32.ActiveCfg = Release|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Release|x86.ActiveCfg = Release|x86
+		{B6293C78-2499-4721-B958-0084525E9B09}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

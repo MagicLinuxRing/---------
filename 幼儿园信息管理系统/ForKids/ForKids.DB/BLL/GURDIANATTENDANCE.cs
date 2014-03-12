@@ -108,11 +108,11 @@ namespace ForKids.DB.BLL
 					}
 					if(dt.Rows[n]["GURDIANID"]!=null && dt.Rows[n]["GURDIANID"].ToString()!="")
 					{
-					//model.GURDIANID=dt.Rows[n]["GURDIANID"].ToString();
+						model.GURDIANID=int.Parse(dt.Rows[n]["GURDIANID"].ToString());
 					}
 					if(dt.Rows[n]["METTINGID"]!=null && dt.Rows[n]["METTINGID"].ToString()!="")
 					{
-					//model.METTINGID=dt.Rows[n]["METTINGID"].ToString();
+						model.METTINGID=int.Parse(dt.Rows[n]["METTINGID"].ToString());
 					}
 					if(dt.Rows[n]["ISATTEND"]!=null && dt.Rows[n]["ISATTEND"].ToString()!="")
 					{
